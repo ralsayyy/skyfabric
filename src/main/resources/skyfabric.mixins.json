@@ -4,7 +4,8 @@
   "package": "ralseiii.skyfabric.mixin",
   "compatibilityLevel": "JAVA_8",
   "client": [
-    "ChatHudListenerMixin"
+    "ChatHudListenerMixin",
+    "MinecraftClientMixin"
   ],
   "injectors": {
     "defaultRequire": 1

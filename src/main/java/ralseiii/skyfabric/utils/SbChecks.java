@@ -7,6 +7,7 @@ import net.minecraft.scoreboard.Scoreboard;
 import net.minecraft.scoreboard.ScoreboardObjective;
 import net.minecraft.scoreboard.ScoreboardPlayerScore;
 import net.minecraft.scoreboard.Team;
+import net.minecraft.text.Text;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -15,8 +16,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class SbChecks {
-    public static boolean isSkyblock = false;
-    public static boolean isCatacombs = false;
+    public static Boolean isSkyblock = false;
+    public static Boolean isCatacombs = false;
     public static void checkSkyblock() {
         List<String> list = new ArrayList<>();
         MinecraftClient client = MinecraftClient.getInstance();
@@ -52,5 +53,6 @@ public class SbChecks {
             }
 
         }
+     client.player.sendMessage(Text.of("sb.get.0: " + list.get(0).toString() + " sb.last: " + list.get(list.size() - 1)), false);
     }
 }

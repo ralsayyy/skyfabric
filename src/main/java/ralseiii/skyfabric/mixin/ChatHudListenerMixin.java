@@ -10,6 +10,8 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import ralseiii.skyfabric.utils.SbChecks;
+import ralseiii.skyfabric.solvers.dwarven.FetchurSolver;
 
 import java.util.List;
 import java.util.UUID;
@@ -21,7 +23,14 @@ public class ChatHudListenerMixin {
     @Inject(method = "onChatMessage", at = @At("HEAD"), cancellable = true)
     public void onMessage(MessageType messageType, Text message, UUID senderUuid, CallbackInfo ci) {
         String msg = message.getString();
-
+        // puzzler and fetchur
+        MinecraftClient minecraftClient2 = MinecraftClient.getInstance();
+        if (SbChecks.isSkyblock && !SbChecks.isCatacombs && msg.contains("[NPC]")) {
+            if (msg.contains("Fetchur")) {
+                MinecraftClient minecraftClient = MinecraftClient.getInstance();
+                minecraftClient.player.sendMessage(Text.of(FetchurSolver.fetchurSolver(msg)), false);
+            }
+        }
 
     }
 }
