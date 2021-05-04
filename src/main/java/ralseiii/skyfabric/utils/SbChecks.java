@@ -53,6 +53,5 @@ public class SbChecks {
             }
 
         }
-     client.player.sendMessage(Text.of("sb.get.0: " + list.get(0).toString() + " sb.last: " + list.get(list.size() - 1)), false);
     }
 }

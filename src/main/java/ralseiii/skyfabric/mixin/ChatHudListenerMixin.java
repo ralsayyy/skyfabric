@@ -24,11 +24,11 @@ public class ChatHudListenerMixin {
     public void onMessage(MessageType messageType, Text message, UUID senderUuid, CallbackInfo ci) {
         String msg = message.getString();
         // puzzler and fetchur
-        MinecraftClient minecraftClient2 = MinecraftClient.getInstance();
         if (SbChecks.isSkyblock && !SbChecks.isCatacombs && msg.contains("[NPC]")) {
             if (msg.contains("Fetchur")) {
                 MinecraftClient minecraftClient = MinecraftClient.getInstance();
-                minecraftClient.player.sendMessage(Text.of(FetchurSolver.fetchurSolver(msg)), false);
+                String fetchurItem = FetchurSolver.fetchurSolver(msg);
+                if (fetchurItem != "") minecraftClient.player.sendMessage(Text.of("§9[Skyfabric]§r: Fetchur wants §a[" + fetchurItem + "]§r"), false);
             }
         }
 
