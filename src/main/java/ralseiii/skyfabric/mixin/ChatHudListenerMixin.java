@@ -10,6 +10,7 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import ralseiii.skyfabric.solvers.dungeon.chat.ThreeWeirdos;
 import ralseiii.skyfabric.utils.SbChecks;
 import ralseiii.skyfabric.solvers.dwarven.FetchurSolver;
 
@@ -28,7 +29,18 @@ public class ChatHudListenerMixin {
             if (msg.contains("Fetchur")) {
                 MinecraftClient minecraftClient = MinecraftClient.getInstance();
                 String fetchurItem = FetchurSolver.fetchurSolver(msg);
-                if (fetchurItem != "") minecraftClient.player.sendMessage(Text.of("§9[Skyfabric]§r: Fetchur wants §a[" + fetchurItem + "]§r"), false);
+                if (!fetchurItem.equals("")) minecraftClient.player.sendMessage(Text.of("§9[Skyfabric]§r: Fetchur wants §a[" + fetchurItem + "]§r"), false);
+            }
+        }
+        // three weirdos
+        if (SbChecks.isSkyblock && SbChecks.isCatacombs && msg.contains("[NPC]")) {
+            MinecraftClient minecraftClient = MinecraftClient.getInstance();
+            Boolean hasReward = ThreeWeirdos.threeWeirdosSolver(msg);
+            if (hasReward) {
+                String rewardChestName = msg;
+                rewardChestName = rewardChestName.substring(rewardChestName.indexOf("]") + 2);
+                rewardChestName = rewardChestName.substring(0, rewardChestName.indexOf(":"));
+                minecraftClient.player.sendMessage(Text.of("§9[Skyfabric]§r: " + rewardChestName + " has the reward."), false);
             }
         }
 
