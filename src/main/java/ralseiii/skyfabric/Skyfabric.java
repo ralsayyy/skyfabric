@@ -1,8 +1,6 @@
 package ralseiii.skyfabric;
 
-import com.sun.org.apache.xpath.internal.operations.Bool;
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.text.Text;
 import ralseiii.skyfabric.utils.SbChecks;
 
 import net.fabricmc.api.ClientModInitializer;

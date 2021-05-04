@@ -16,18 +16,22 @@ import java.util.List;
 import java.util.stream.Collectors;
 // originally from skyblocker
 public class SbChecks {
-    public static Boolean isSkyblock = false;
-    public static Boolean isCatacombs = false;
+    public static Boolean isSkyblock = true;
+    public static Boolean isCatacombs = true;
     public static void checkSkyblock() {
         List<String> list = new ArrayList<>();
         MinecraftClient client = MinecraftClient.getInstance();
+        if (client == null) return;
+        if (client.world == null) return;
         Scoreboard scoreboard = client.world.getScoreboard();
+        if (scoreboard == null) return;
         ScoreboardObjective objective = scoreboard.getObjectiveForSlot(1);
+        if (objective == null) return;
         Collection<ScoreboardPlayerScore> scores = scoreboard.getAllPlayerScores(objective);
         List<ScoreboardPlayerScore> listScoreboard = scores.stream()
                 .filter(input -> input != null && input.getPlayerName() != null && !input.getPlayerName().startsWith("#"))
                 .collect(Collectors.toList());
-        if (list.size() > 15) {
+        if (listScoreboard.size() > 15) {
             scores = Lists.newArrayList(Iterables.skip(listScoreboard, scores.size() - 15));
         } else {
             scores = listScoreboard;
@@ -35,6 +39,7 @@ public class SbChecks {
 
         for (ScoreboardPlayerScore score : scores) {
             Team team = scoreboard.getPlayerTeam(score.getPlayerName());
+            if (team == null) return;
             String text = team.getPrefix().getString() + team.getSuffix().getString();
             if (text.trim().length() > 0)
                 list.add(text);
