@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "id": "skyfabric",
+  "version": "${version}",
+  "name": "Skyfabric",
+  "description": "",
+  "authors": [
+    "_ralsei"
+  ],
+  "contact": {
+    "repo": "github.com/ralseiii/skyfabric"
+  },
+  "license": "MIT",
+  "icon": "assets/skyfabric/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "client": [
+      "ralseiii.skyfabric.Skyfabric"
+    ]
+  },
+  "mixins": [
+    "skyfabric.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.11.3",
+    "fabric": "*",
+    "minecraft": "1.16.5"
+  }
+}
