@@ -1,10 +1,6 @@
 package ralseiii.skyfabric.solvers.dwarven;
 
-import net.minecraft.text.Text;
-
 public class FetchurSolver {
-
-
     public static String fetchurSolver(String message) {
         if (message.contains("red and soft")) return "Red wool";
         if (message.contains("see through")) return "Yellow Glass";

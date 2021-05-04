@@ -14,7 +14,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
-
+// originally from skyblocker
 public class SbChecks {
     public static Boolean isSkyblock = false;
     public static Boolean isCatacombs = false;
