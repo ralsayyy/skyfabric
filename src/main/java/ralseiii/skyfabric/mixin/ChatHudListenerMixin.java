@@ -25,11 +25,16 @@ public class ChatHudListenerMixin {
     public void onMessage(MessageType messageType, Text message, UUID senderUuid, CallbackInfo ci) {
         String msg = message.getString();
         // puzzler and fetchur
+        // TODO: Implement a puzzler solver
         if (SbChecks.isSkyblock && !SbChecks.isCatacombs && msg.contains("[NPC]")) {
             if (msg.contains("Fetchur")) {
                 MinecraftClient minecraftClient = MinecraftClient.getInstance();
                 String fetchurItem = FetchurSolver.fetchurSolver(msg);
-                if (!fetchurItem.equals("")) minecraftClient.player.sendMessage(Text.of("§9[Skyfabric]§r: Fetchur wants §a[" + fetchurItem + "]§r"), false);
+                if (!fetchurItem.equals("")) {
+                    minecraftClient.player.sendMessage(message, false);
+                    minecraftClient.player.sendMessage(Text.of("§8[Skyfabric]§r: Fetchur wants §a[" + fetchurItem + "]§r"), false);
+                    ci.cancel();
+                }
             }
         }
         // three weirdos
@@ -40,7 +45,9 @@ public class ChatHudListenerMixin {
                 String rewardChestName = msg;
                 rewardChestName = rewardChestName.substring(rewardChestName.indexOf("]") + 2);
                 rewardChestName = rewardChestName.substring(0, rewardChestName.indexOf(":"));
+                minecraftClient.player.sendMessage(message, false);
                 minecraftClient.player.sendMessage(Text.of("§9[Skyfabric]§r: " + rewardChestName + " has the reward."), false);
+                ci.cancel();
             }
         }
 
