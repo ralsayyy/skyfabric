@@ -15,9 +15,10 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 // originally from skyblocker
+
 public class SbChecks {
-    public static Boolean isSkyblock = true;
-    public static Boolean isCatacombs = true;
+    public static Boolean isSkyblock = false;
+    public static Boolean isCatacombs = false;
     public static void checkSkyblock() {
         List<String> list = new ArrayList<>();
         MinecraftClient client = MinecraftClient.getInstance();
@@ -27,6 +28,7 @@ public class SbChecks {
         if (scoreboard == null) return;
         ScoreboardObjective objective = scoreboard.getObjectiveForSlot(1);
         if (objective == null) return;
+
         Collection<ScoreboardPlayerScore> scores = scoreboard.getAllPlayerScores(objective);
         List<ScoreboardPlayerScore> listScoreboard = scores.stream()
                 .filter(input -> input != null && input.getPlayerName() != null && !input.getPlayerName().startsWith("#"))
@@ -47,14 +49,18 @@ public class SbChecks {
 
         list.add(objective.getDisplayName().getString());
         Collections.reverse(list);
-
         String scoreboardString = list.toString();
         if (list.get(list.size() - 1).equals("www.hypixel.net")) {
             if (list.get(0).toString().contains("SKYBLOCK")) {
                 isSkyblock = true;
                 if (scoreboardString.contains("The Catacombs")) {
                     isCatacombs = true;
+                } else {
+                    isCatacombs = false;
                 }
+            } else {
+                isSkyblock = false;
+                isCatacombs = false;
             }
 
         }
