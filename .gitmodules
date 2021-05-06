@@ -1,0 +1,3 @@
+[submodule "src/main/resources/skytils-data"]
+	path = src/main/resources/skytils-data
+	url = https://github.com/Skytils/SkytilsMod-Data
