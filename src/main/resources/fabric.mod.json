@@ -3,12 +3,12 @@
   "id": "skyfabric",
   "version": "${version}",
   "name": "Skyfabric",
-  "description": "",
+  "description": "A Hypixel Skyblock mod.",
   "authors": [
     "_ralsei"
   ],
   "contact": {
-    "repo": "github.com/ralseiii/skyfabric"
+    "repo": "https://github.com/ralseiii/skyfabric"
   },
   "license": "MIT",
   "icon": "assets/skyfabric/icon.png",
