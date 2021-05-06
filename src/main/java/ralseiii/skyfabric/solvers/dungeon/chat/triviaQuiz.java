@@ -1,6 +1,5 @@
 package ralseiii.skyfabric.solvers.dungeon.chat;
 
-
 class TriviaQuestion {
     public String question;
     public String[] correctAnswers;
@@ -16,6 +15,7 @@ public class triviaQuiz {
     public static String answerA;
     public static String answerB;
     public static String answerC;
+
     public static String triviaQuizSolver() {
         String correctAnswer = "(Unknown)";
         TriviaQuestion[] questions = {
@@ -72,18 +72,18 @@ public class triviaQuiz {
                 }),
         };
         TriviaLoop:
-        for (int i = 0; i < questions.length; i++) {
-            if (questions[i].question.contains(question)) {
-                for (int i2 = 0; i2 < questions[i].correctAnswers.length; i2++) {
-                    if (answerA.contains(questions[i].correctAnswers[i2])) {
+        for (TriviaQuestion triviaQuestion : questions) {
+            if (triviaQuestion.question.contains(question)) {
+                for (int i2 = 0; i2 < triviaQuestion.correctAnswers.length; i2++) {
+                    if (answerA.contains(triviaQuestion.correctAnswers[i2])) {
                         correctAnswer = "(A)";
                         break TriviaLoop;
                     }
-                    if (answerB.contains(questions[i].correctAnswers[i2])) {
+                    if (answerB.contains(triviaQuestion.correctAnswers[i2])) {
                         correctAnswer = "(B)";
                         break TriviaLoop;
                     }
-                    if (answerC.contains(questions[i].correctAnswers[i2])) {
+                    if (answerC.contains(triviaQuestion.correctAnswers[i2])) {
                         correctAnswer = "(C)";
                         break TriviaLoop;
                     }
