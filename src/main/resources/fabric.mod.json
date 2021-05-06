@@ -8,7 +8,8 @@
     "_ralsei"
   ],
   "contact": {
-    "repo": "https://github.com/ralseiii/skyfabric"
+    "sources": "https://github.com/ralseiii/skyfabric",
+    "issues": "https://github.com/ralseiii/skyfabric/issues"
   },
   "license": "MIT",
   "icon": "assets/skyfabric/icon.png",
@@ -25,5 +26,8 @@
     "fabricloader": ">=0.11.3",
     "fabric": "*",
     "minecraft": "1.16.5"
+  },
+  "custom": {
+    "modmenu:clientsideOnly": true
   }
 }
