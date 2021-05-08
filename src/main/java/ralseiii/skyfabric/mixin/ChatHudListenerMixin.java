@@ -25,17 +25,17 @@ public class ChatHudListenerMixin {
 
     @Inject(method = "onChatMessage", at = @At("HEAD"), cancellable = true)
     public void onMessage(MessageType messageType, Text message, UUID senderUuid, CallbackInfo ci) {
-        if (SbChecks.isSkyblock) {
+        if (!SbChecks.isSkyblock) {
             String msg = message.getString();
             // puzzler and fetchur
             // TODO: Implement a puzzler solver
-            if (!SbChecks.isCatacombs && msg.contains("[NPC]")) {
+            if (msg.contains("[NPC]")) {
                 if (msg.contains("Fetchur")) {
                     MinecraftClient minecraftClient = MinecraftClient.getInstance();
-                    String fetchurItem = FetchurSolver.fetchurSolver(msg);
-                    if (!fetchurItem.equals("")) {
+                    Text fetchurItemText = FetchurSolver.fetchurSolver(msg);
+                    if (!fetchurItemText.getString().equals("")) {
                         minecraftClient.player.sendMessage(message, false);
-                        minecraftClient.player.sendMessage(Text.of("§8[Skyfabric]§r: Fetchur wants §a[" + fetchurItem + "]§r"), false);
+                        minecraftClient.player.sendMessage(Text.of("§8[Skyfabric]§r: Fetchur wants §a[" + fetchurItemText.getString() + "]§r"), false);
                         ci.cancel();
                     }
                 }
@@ -43,46 +43,47 @@ public class ChatHudListenerMixin {
             if (SbChecks.isCatacombs) {
                 // three weirdos
                 if (msg.contains("[NPC]")) {
-                    MinecraftClient minecraftClient = MinecraftClient.getInstance();
-                    minecraftClient.player.sendMessage(message, false);
                     Boolean hasReward = ThreeWeirdos.threeWeirdosSolver(msg);
                     if (hasReward) {
                         String rewardChestName = msg;
+                        MinecraftClient minecraftClient = MinecraftClient.getInstance();
+                        minecraftClient.player.sendMessage(message, false);
                         rewardChestName = rewardChestName.substring(rewardChestName.indexOf("]") + 2);
                         rewardChestName = rewardChestName.substring(0, rewardChestName.indexOf(":"));
                         minecraftClient.player.sendMessage(Text.of("§8[Skyfabric]§r: " + rewardChestName + " has the reward."), false);
+                        ci.cancel();
                     }
-                    ci.cancel();
                 }
                 // Trivia question
                 if (msg.contains("Question #") && !msg.contains(":")) {
                     nextQuestion = true;
-                    client.player.sendMessage(Text.of(msg), false);
+                    client.player.sendMessage(message, false);
                     ci.cancel();
                 }
 
                 if (nextQuestion && !msg.contains("Question #")) {
-                    triviaQuiz.question = msg;
+                    triviaQuiz.question = msg.trim();
                     nextQuestion = false;
-                    client.player.sendMessage(Text.of(msg), false);
+                    client.player.sendMessage(message, false);
                     ci.cancel();
                 }
                 // trivia answers
                 if (msg.contains("ⓐ")) {
-                    triviaQuiz.answerA = msg;
-                    client.player.sendMessage(Text.of(msg), false);
+                    triviaQuiz.answerA = msg.substring(msg.indexOf("ⓐ"));
+                    client.player.sendMessage(message, false);
                     ci.cancel();
                 }
 
                 if (msg.contains("ⓑ")) {
-                    triviaQuiz.answerB = msg;
-                    client.player.sendMessage(Text.of(msg), false);
+                    triviaQuiz.answerB = msg.substring(msg.indexOf("ⓑ"));
+
+                    client.player.sendMessage(message, false);
                     ci.cancel();
                 }
 
                 if (msg.contains("ⓒ")) {
-                    triviaQuiz.answerC = msg;
-                    client.player.sendMessage(Text.of(msg), false);
+                    triviaQuiz.answerC = msg.substring(msg.indexOf("ⓒ"));
+                    client.player.sendMessage(message, false);
                     client.player.sendMessage(Text.of("§8[Skyfabric]§r: The correct answer is " + triviaQuiz.triviaQuizSolver() + "."), false);
                     ci.cancel();
                 }

@@ -17,6 +17,9 @@
   "entrypoints": {
     "client": [
       "ralseiii.skyfabric.Skyfabric"
+    ],
+    "modmenu": [
+      "ralseiii.skyfabric.config.ConfigMenu"
     ]
   },
   "mixins": [
