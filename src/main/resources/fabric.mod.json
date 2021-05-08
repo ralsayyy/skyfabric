@@ -11,7 +11,7 @@
     "sources": "https://github.com/ralseiii/skyfabric",
     "issues": "https://github.com/ralseiii/skyfabric/issues"
   },
-  "license": "MIT",
+  "license": "BSD-3-Clause",
   "icon": "assets/skyfabric/icon.png",
   "environment": "*",
   "entrypoints": {
