@@ -14,6 +14,7 @@ public class Config {
         class DungeonSolverConfigDropdown {
             Boolean Trivia = true;
             Boolean Three_Weirdos = true;
+            Boolean HigherSolver = true;
         }
 
         class DwarvenSolverConfigDropdown {

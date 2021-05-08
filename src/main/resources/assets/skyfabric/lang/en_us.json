@@ -1,4 +1,11 @@
 {
- "text.autoconfig.skyfactory.option.Enabled": "Enable Skyfabric",
- "text.autoconfig.skyfactory.option.solverConfigDropdown": "Solvers"
+ "text.autoconfig.skyfabric.title": "Skyfabric Options",
+ "text.autoconfig.skyfabric.option.Enabled": "Enable Skyfabric",
+ "text.autoconfig.skyfabric.option.solverConfigDropdown": "Solvers",
+ "text.autoconfig.skyfabric.option.solverConfigDropdown.dungeonSolverConfigDropdown": "Dungeon Puzzle Solvers",
+ "text.autoconfig.skyfabric.option.solverConfigDropdown.dungeonSolverConfigDropdown.Trivia": "Trivia",
+ "text.autoconfig.skyfabric.option.solverConfigDropdown.dungeonSolverConfigDropdown.Three_Weirdos": "Three Weirdos",
+ "text.autoconfig.skyfabric.option.solverConfigDropdown.dungeonSolverConfigDropdown.HigherSolver": "Higher or Lower",
+ "text.autoconfig.skyfabric.option.solverConfigDropdown.dwarvenSolverConfigDropdown": "Dwarven Mines Solvers",
+ "text.autoconfig.skyfabric.option.solverConfigDropdown.dwarvenSolverConfigDropdown.Fetchur": "Fetchur"
 }
