@@ -25,7 +25,7 @@ public class ChatHudListenerMixin {
 
     @Inject(method = "onChatMessage", at = @At("HEAD"), cancellable = true)
     public void onMessage(MessageType messageType, Text message, UUID senderUuid, CallbackInfo ci) {
-        if (!SbChecks.isSkyblock) {
+        if (SbChecks.isSkyblock) {
             String msg = message.getString();
             // puzzler and fetchur
             // TODO: Implement a puzzler solver
