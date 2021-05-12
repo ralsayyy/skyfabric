@@ -4,6 +4,8 @@ import me.shedaniel.autoconfig.AutoConfig;
 import me.shedaniel.autoconfig.serializer.GsonConfigSerializer;
 import net.minecraft.client.MinecraftClient;
 import ralseiii.skyfabric.config.Config;
+import ralseiii.skyfabric.hud.dungeon.DungeonMainHUD;
+import ralseiii.skyfabric.hud.dungeon.DungeonMap;
 import ralseiii.skyfabric.utils.SbChecks;
 import ralseiii.skyfabric.solvers.dungeon.entity.BlazeSolver;
 
