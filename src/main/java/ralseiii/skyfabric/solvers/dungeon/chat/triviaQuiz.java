@@ -1,5 +1,7 @@
 package ralseiii.skyfabric.solvers.dungeon.chat;
 
+import ralseiii.skyfabric.utils.SbUtils;
+
 class TriviaQuestion {
     public String question;
     public String[] correctAnswers;
@@ -70,6 +72,9 @@ public class triviaQuiz {
                         "Stable Dragon",
                         "Professor Dragon"
                 }),
+                new TriviaQuestion("What SkyBlock year is it?", new String[]{
+                        String.valueOf(SbUtils.getYear())
+                })
         };
         TriviaLoop:
         for (TriviaQuestion triviaQuestion : questions) {

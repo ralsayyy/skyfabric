@@ -4,12 +4,17 @@ import me.shedaniel.autoconfig.ConfigData;
 import me.shedaniel.autoconfig.annotation.ConfigEntry;
 
 public class Config {
+    public static ModConfig config;
+
     @me.shedaniel.autoconfig.annotation.Config(name = "skyfabric")
     public static class ModConfig implements ConfigData {
         Boolean Enabled = true;
 
         @ConfigEntry.Gui.CollapsibleObject
-        SolverConfigDropdown solverConfigDropdown;
+        public SolverConfigDropdown solverConfigDropdown;
+
+        public Boolean dungeonHud = true;
+        public Boolean dungeonMap = true;
 
         class DungeonSolverConfigDropdown {
             Boolean Trivia = true;
@@ -23,9 +28,9 @@ public class Config {
 
         class SolverConfigDropdown {
             @ConfigEntry.Gui.CollapsibleObject
-            DungeonSolverConfigDropdown dungeonSolverConfigDropdown;
+            public DungeonSolverConfigDropdown dungeonSolverConfigDropdown;
             @ConfigEntry.Gui.CollapsibleObject
-            DwarvenSolverConfigDropdown dwarvenSolverConfigDropdown;
+            public DwarvenSolverConfigDropdown dwarvenSolverConfigDropdown;
         }
     }
 

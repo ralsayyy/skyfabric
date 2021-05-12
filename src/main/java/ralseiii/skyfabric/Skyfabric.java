@@ -15,13 +15,13 @@ import net.fabricmc.api.Environment;
 @Environment(EnvType.CLIENT)
 public class Skyfabric implements ClientModInitializer {
     private static int tickCounter = 0;
-    public Config.ModConfig config;
     @Override
     public void onInitializeClient() {
         // register config file
         AutoConfig.register(Config.ModConfig.class, GsonConfigSerializer::new);
-        config = AutoConfig.getConfigHolder(Config.ModConfig.class).getConfig();
-
+        Config.config = AutoConfig.getConfigHolder(Config.ModConfig.class).getConfig();
+        DungeonMainHUD.registerHUD();
+        DungeonMap.registerHUD();
     }
 
     public static void onTick() {
