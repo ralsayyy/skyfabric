@@ -11,7 +11,7 @@
     "sources": "https://github.com/ralseiii/skyfabric",
     "issues": "https://github.com/ralseiii/skyfabric/issues"
   },
-  "license": "BSD-3-Clause",
+  "license": "MPL-2.0",
   "icon": "assets/skyfabric/icon.png",
   "environment": "*",
   "entrypoints": {
