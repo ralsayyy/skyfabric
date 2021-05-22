@@ -14,8 +14,7 @@ public class BlazeSolver {
         MinecraftClient minecraftClient = MinecraftClient.getInstance();
         if (minecraftClient == null || minecraftClient.world == null) return;
         minecraftClient.world.getEntitiesByClass(ArmorStandEntity.class, minecraftClient.player.getBoundingBox().expand(20), entity -> {
-           if (entity.hasCustomName() && entity.getCustomName().getString().contains("Blaze")) return true;
-           return false;
+            return entity.hasCustomName() && entity.getCustomName().getString().contains("Blaze");
         }).forEach(entity -> {
             String blazeName = entity.getCustomName().getString();
             String healthAsString = blazeName.substring(blazeName.indexOf("e") + 3, blazeName.indexOf("/") - 2);
@@ -28,18 +27,17 @@ public class BlazeSolver {
         });
         // it would be nicer if it could be done in the same loop
         minecraftClient.world.getEntitiesByClass(ArmorStandEntity.class, minecraftClient.player.getBoundingBox().expand(20), entity -> {
-            if (entity.hasCustomName() && entity.getCustomName().getString().contains("Blaze")) return true;
-            return false;
+            return entity.hasCustomName() && entity.getCustomName().getString().contains("Blaze");
         }).forEach(entity -> {
             String blazeName = entity.getCustomName().getString();
             String healthAsString = blazeName.substring(blazeName.indexOf("e") + 3, blazeName.indexOf("/") - 2);
             if (blazeName.contains("x")) blazeName = blazeName.substring(4);
             if (Integer.parseInt(healthAsString) == highestHealth) {
-                entity.setCustomName(Text.of(Formatting.BLUE + "x " + blazeName));
+                entity.setCustomName(Text.of(Formatting.BLUE + "Higher " + blazeName));
                 return;
             }
             if (Integer.parseInt(healthAsString) == lowestHealth) {
-                entity.setCustomName(Text.of(Formatting.GREEN + "x " + blazeName));
+                entity.setCustomName(Text.of(Formatting.GREEN + "Lowest " + blazeName));
                 return;
             }
             entity.setCustomName(Text.of(Formatting.RED + blazeName));

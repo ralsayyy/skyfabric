@@ -73,7 +73,7 @@ public class triviaQuiz {
                         "Professor Dragon"
                 }),
                 new TriviaQuestion("What SkyBlock year is it?", new String[]{
-                        String.valueOf(SbUtils.getYear())
+                         "Year " + SbUtils.getYear()
                 })
         };
         TriviaLoop:

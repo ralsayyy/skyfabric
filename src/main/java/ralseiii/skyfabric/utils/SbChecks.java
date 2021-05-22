@@ -2,17 +2,19 @@ package ralseiii.skyfabric.utils;
 
 import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;
+import com.google.common.collect.Ordering;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.network.AbstractClientPlayerEntity;
+import net.minecraft.client.network.PlayerListEntry;
 import net.minecraft.scoreboard.Scoreboard;
 import net.minecraft.scoreboard.ScoreboardObjective;
 import net.minecraft.scoreboard.ScoreboardPlayerScore;
 import net.minecraft.scoreboard.Team;
+import net.minecraft.client.gui.hud.PlayerListHud;
 import net.minecraft.text.Text;
+import ralseiii.skyfabric.mixin.PlayerHudAccessor;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 // originally from skyblocker
 
@@ -22,8 +24,7 @@ public class SbChecks {
     public static void checkSkyblock() {
         List<String> list = new ArrayList<>();
         MinecraftClient client = MinecraftClient.getInstance();
-        if (client == null) return;
-        if (client.world == null) return;
+        if (client == null || client.world == null) return;
         Scoreboard scoreboard = client.world.getScoreboard();
         if (scoreboard == null) return;
         ScoreboardObjective objective = scoreboard.getObjectiveForSlot(1);
@@ -53,16 +54,30 @@ public class SbChecks {
         if (list.get(list.size() - 1).equals("www.hypixel.net")) {
             if (list.get(0).toString().contains("SKYBLOCK")) {
                 isSkyblock = true;
-                if (scoreboardString.contains("The Catacombs")) {
-                    isCatacombs = true;
-                } else {
-                    isCatacombs = false;
-                }
+                isCatacombs = scoreboardString.contains("The Catacombs");
             } else {
                 isSkyblock = false;
                 isCatacombs = false;
             }
-
         }
+
+        // check player list for amount of secrets
+        if (!isCatacombs) return;
+        if (client.player == null) return;
+        Collection<PlayerListEntry> playerListEntryList = client.player.networkHandler.getPlayerList();
+        for (PlayerListEntry entry : playerListEntryList) {
+
+            List<Text> playerNameTextSiblingList = ((PlayerHudAccessor) client.inGameHud.getPlayerListHud()).invokeGetPlayerName(entry).getSiblings();
+            if (playerNameTextSiblingList != null && !playerNameTextSiblingList.isEmpty()) {
+                // System.out.println(playerNameTextSiblingList.get(0));
+                ScoreboardObjective scoreboardObjective2 = scoreboard.getObjectiveForSlot(1);
+                if (playerNameTextSiblingList.get(0).getString().contains("Secrets found:") && scoreboardObjective2 != null) {
+                    // System.out.println(playerNameTextSiblingList.get(0));
+                    PlayerUtils.secretsAmount = String.valueOf(scoreboard.getPlayerScore(entry.getProfile().getName(), scoreboardObjective2).getScore());
+                    // PlayerUtils.secretsAmount = playerNameTextSiblingList.get(0).getString().substring(playerNameTextSiblingList.get(0).getString().indexOf(" "));
+                }
+            }
+        }
+
     }
 }

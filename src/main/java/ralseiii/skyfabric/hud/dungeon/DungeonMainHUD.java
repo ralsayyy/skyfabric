@@ -1,11 +1,10 @@
 package ralseiii.skyfabric.hud.dungeon;
 
-
 import me.shedaniel.autoconfig.AutoConfig;
 import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawableHelper;
-import net.minecraft.client.util.math.MatrixStack;
+import net.minecraft.client.gui.hud.PlayerListHud;
 import net.minecraft.util.Identifier;
 import ralseiii.skyfabric.config.Config;
 import ralseiii.skyfabric.utils.PlayerUtils;
@@ -13,10 +12,12 @@ import ralseiii.skyfabric.utils.SbChecks;
 
 public class DungeonMainHUD {
         public static void registerHUD() {
-                HudRenderCallback.EVENT.register(((matrixStack, tickDelta) -> {
+                /*HudRenderCallback.EVENT.register(((matrixStack, tickDelta) -> {
                         Config.ModConfig config = AutoConfig.getConfigHolder(Config.ModConfig.class).getConfig();
                         if (SbChecks.isCatacombs && config.dungeonHud) {
+                                String secrets = null;
                                 MinecraftClient client = MinecraftClient.getInstance();
+                                PlayerListHud playerListHud = client.inGameHud.getPlayerListHud();
                                 int xpLevel = PlayerUtils.getExpLevel();
                                 String ultimateCountdownText;
                                 matrixStack.push();
@@ -32,9 +33,14 @@ public class DungeonMainHUD {
                                 if (xpLevel == 0) ultimateCountdownText = "Ready!";
                                 else ultimateCountdownText = String.valueOf(xpLevel);
                                 client.textRenderer.drawWithShadow(matrixStack, ultimateCountdownText, 0, 18, 0xffffff);
+                                if (PlayerUtils.secretsAmount == null)
+                                       secrets = "None";
+                                else
+                                        secrets = PlayerUtils.secretsAmount;
+                                client.textRenderer.drawWithShadow(matrixStack, secrets, 32, 18, 0xffffff);
                                 matrixStack.pop();
                                 matrixStack.push();
                         }
-                }));
+                }));*/
         }
 }

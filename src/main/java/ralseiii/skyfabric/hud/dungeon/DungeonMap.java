@@ -19,7 +19,7 @@ import ralseiii.skyfabric.utils.SbChecks;
 
 public class DungeonMap {
     public static void registerHUD() {
-        HudRenderCallback.EVENT.register(((matrixStack, tickDelta) -> {
+        /*HudRenderCallback.EVENT.register(((matrixStack, tickDelta) -> {
             if (SbChecks.isCatacombs && Config.config.dungeonMap) {
                 MinecraftClient client = MinecraftClient.getInstance();
                 if (client == null || client.player == null || client.world == null) return;
@@ -55,6 +55,6 @@ public class DungeonMap {
                     matrixStack.pop();
                 }
             }
-        }));
+        }));*/
     }
 }
