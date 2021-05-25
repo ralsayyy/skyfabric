@@ -1,9 +1,11 @@
 package ralseiii.skyfabric.mixin;
 
+import net.minecraft.block.Blocks;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.hud.ChatHudListener;
 import net.minecraft.network.MessageType;
 import net.minecraft.text.Text;
+import net.minecraft.util.math.BlockPos;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -26,6 +28,7 @@ public class ChatHudListenerMixin {
     @Inject(method = "onChatMessage", at = @At("HEAD"), cancellable = true)
     public void onMessage(MessageType messageType, Text message, UUID senderUuid, CallbackInfo ci) {
         if (SbChecks.isSkyblock) {
+
             String msg = message.getString();
             // puzzler and fetchur
             // TODO: Implement a puzzler solver
