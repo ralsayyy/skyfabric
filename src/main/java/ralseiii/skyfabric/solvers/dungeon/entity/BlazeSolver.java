@@ -14,7 +14,7 @@ public class BlazeSolver {
         lowestHealth = 1234567890;
         MinecraftClient minecraftClient = MinecraftClient.getInstance();
         if (minecraftClient == null || minecraftClient.world == null) return;
-        minecraftClient.world.getEntitiesByClass(ArmorStandEntity.class, minecraftClient.player.getBoundingBox().expand(20, 40, 20), entity -> {
+        minecraftClient.world.getEntitiesByClass(ArmorStandEntity.class, minecraftClient.player.getBoundingBox().expand(20, 70, 20), entity -> {
             return entity.hasCustomName() && entity.getCustomName().getString().contains("Blaze");
         }).forEach(entity -> {
             String blazeName = entity.getCustomName().getString();
@@ -31,7 +31,7 @@ public class BlazeSolver {
             } catch (java.lang.NumberFormatException exception) {
             }
         });
-        minecraftClient.world.getEntitiesByClass(ArmorStandEntity.class, minecraftClient.player.getBoundingBox().expand(20, 40, 20), entity -> {
+        minecraftClient.world.getEntitiesByClass(ArmorStandEntity.class, minecraftClient.player.getBoundingBox().expand(20, 70, 20), entity -> {
             return entity.hasCustomName() && entity.getCustomName().getString().contains("Blaze");
         }).forEach(entity -> {
             String blazeName = entity.getCustomName().getString();
