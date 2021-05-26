@@ -31,7 +31,7 @@ public class Skyfabric implements ClientModInitializer {
         if (minecraftClient == null) return;
         tickCounter++;
         if (tickCounter % 60 == 0) {
-            if (minecraftClient.world != null && minecraftClient.isInSingleplayer()) {
+            if (minecraftClient.world != null && !minecraftClient.isInSingleplayer()) {
                 SbChecks.checkSkyblock();
                if (SbChecks.isCatacombs)
                     BlazeSolver.blazeSolver();
