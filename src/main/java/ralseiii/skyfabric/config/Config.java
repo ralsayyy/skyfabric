@@ -12,11 +12,11 @@ public class Config {
 
         @ConfigEntry.Gui.CollapsibleObject
         public SolverConfigDropdown solverConfigDropdown;
-        @ConfigEntry.Gui.CollapsibleObject
-        public DungeonConfigDropdown dungeonConfigDropdown;
+        //@ConfigEntry.Gui.CollapsibleObject
+        //public DungeonConfigDropdown dungeonConfigDropdown;
 
-        public Boolean dungeonHud = true;
-        public Boolean dungeonMap = true;
+        //public Boolean dungeonHud = true;
+        //public Boolean dungeonMap = true;
 
         public class DungeonSolverConfigDropdown {
             public Boolean Trivia = true;
