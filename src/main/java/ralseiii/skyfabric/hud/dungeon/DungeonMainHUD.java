@@ -10,6 +10,10 @@ import ralseiii.skyfabric.config.Config;
 import ralseiii.skyfabric.utils.PlayerUtils;
 import ralseiii.skyfabric.utils.SbChecks;
 
+/* This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at https://mozilla.org/MPL/2.0/. */
+
 public class DungeonMainHUD {
         public static void registerHUD() {
                 /*HudRenderCallback.EVENT.register(((matrixStack, tickDelta) -> {
