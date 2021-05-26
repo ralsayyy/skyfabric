@@ -1,11 +1,9 @@
 package ralseiii.skyfabric.mixin;
 
-import net.minecraft.block.Blocks;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.hud.ChatHudListener;
 import net.minecraft.network.MessageType;
 import net.minecraft.text.Text;
-import net.minecraft.util.math.BlockPos;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -17,7 +15,6 @@ import ralseiii.skyfabric.solvers.dungeon.chat.triviaQuiz;
 import ralseiii.skyfabric.utils.SbChecks;
 import ralseiii.skyfabric.solvers.dwarven.FetchurSolver;
 
-import java.util.List;
 import java.util.UUID;
 
 @Mixin(ChatHudListener.class)
