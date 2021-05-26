@@ -28,6 +28,17 @@ public class BlazeSolver {
                 if (health < lowestHealth) {
                     lowestHealth = health;
                 }
+            } catch (java.lang.NumberFormatException exception) {
+            }
+        });
+        minecraftClient.world.getEntitiesByClass(ArmorStandEntity.class, minecraftClient.player.getBoundingBox().expand(20, 40, 20), entity -> {
+            return entity.hasCustomName() && entity.getCustomName().getString().contains("Blaze");
+        }).forEach(entity -> {
+            String blazeName = entity.getCustomName().getString();
+            String healthAsString = blazeName.substring(blazeName.indexOf("e") + 3, blazeName.indexOf("/") - 2);
+            if (blazeName.contains("x")) blazeName = blazeName.substring(4);
+            try {
+                int health = Integer.parseInt(healthAsString);
                 if (health == highestHealth) {
                     entity.setCustomName(Text.of(Formatting.BLUE + "Highest " + blazeName));
                     return;
