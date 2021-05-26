@@ -65,19 +65,19 @@ public class ChatHudListenerMixin {
                     ci.cancel();
                 }
                 // trivia answers
-                if (msg.contains("ⓐ")) {
+                if (msg.contains("ⓐ")&& !msg.contains("thinks")) {
                     triviaQuiz.answerA = msg.substring(msg.indexOf("ⓐ"));
                     client.player.sendMessage(message, false);
                     ci.cancel();
                 }
 
-                if (msg.contains("ⓑ")) {
+                if (msg.contains("ⓑ") && !msg.contains("thinks")) {
                     triviaQuiz.answerB = msg.substring(msg.indexOf("ⓑ"));
                     client.player.sendMessage(message, false);
                     ci.cancel();
                 }
 
-                if (msg.contains("ⓒ")) {
+                if (msg.contains("ⓒ") && !msg.contains("thinks")) {
                     triviaQuiz.answerC = msg.substring(msg.indexOf("ⓒ"));
                     client.player.sendMessage(message, false);
                     client.player.sendMessage(Text.of("§8[Skyfabric]§r: The correct answer is " + triviaQuiz.triviaQuizSolver() + "."), false);
