@@ -13,7 +13,7 @@ public class BlazeSolver {
         System.out.println("a");
         lowestHealth = 1234567890;
         MinecraftClient minecraftClient = MinecraftClient.getInstance();
-        if (minecraftClient == null || minecraftClient.world == null) return;
+        if (minecraftClient == null || minecraftClient.world == null || minecraftClient.player == null) return;
         minecraftClient.world.getEntitiesByClass(ArmorStandEntity.class, minecraftClient.player.getBoundingBox().expand(20, 70, 20), entity -> {
             return entity.hasCustomName() && entity.getCustomName().getString().contains("Blaze");
         }).forEach(entity -> {
