@@ -28,17 +28,15 @@ public class ChatHudListenerMixin {
     @Inject(method = "onChatMessage", at = @At("HEAD"), cancellable = true)
     public void onMessage(MessageType messageType, Text message, UUID senderUuid, CallbackInfo ci) {
         if (SbChecks.isSkyblock) {
-
             String msg = message.getString();
             // puzzler and fetchur
             // TODO: Implement a puzzler solver
             if (msg.contains("[NPC]")) {
                 if (msg.contains("Fetchur")) {
-                    MinecraftClient minecraftClient = MinecraftClient.getInstance();
                     Text fetchurItemText = FetchurSolver.fetchurSolver(msg);
                     if (!fetchurItemText.getString().equals("")) {
-                        minecraftClient.player.sendMessage(message, false);
-                        minecraftClient.player.sendMessage(Text.of("§8[Skyfabric]§r: Fetchur wants §a[" + fetchurItemText.getString() + "]§r"), false);
+                        client.player.sendMessage(message, false);
+                        client.player.sendMessage(Text.of("§8[Skyfabric]§r: Fetchur wants §a[" + fetchurItemText.getString() + "]§r"), false);
                         ci.cancel();
                     }
                 }
@@ -49,11 +47,10 @@ public class ChatHudListenerMixin {
                     Boolean hasReward = ThreeWeirdos.threeWeirdosSolver(msg);
                     if (hasReward) {
                         String rewardChestName = msg;
-                        MinecraftClient minecraftClient = MinecraftClient.getInstance();
-                        minecraftClient.player.sendMessage(message, false);
+                        client.player.sendMessage(message, false);
                         rewardChestName = rewardChestName.substring(rewardChestName.indexOf("]") + 2);
                         rewardChestName = rewardChestName.substring(0, rewardChestName.indexOf(":"));
-                        minecraftClient.player.sendMessage(Text.of("§8[Skyfabric]§r: " + rewardChestName + " has the reward."), false);
+                        client.player.sendMessage(Text.of("§8[Skyfabric]§r: " + rewardChestName + " has the reward."), false);
                         ci.cancel();
                     }
                 }
@@ -79,7 +76,6 @@ public class ChatHudListenerMixin {
 
                 if (msg.contains("ⓑ")) {
                     triviaQuiz.answerB = msg.substring(msg.indexOf("ⓑ"));
-
                     client.player.sendMessage(message, false);
                     ci.cancel();
                 }
