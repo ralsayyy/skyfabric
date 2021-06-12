@@ -51,7 +51,7 @@ public class triviaQuiz {
                 new TriviaQuestion("What is the name of the person that upgrades pets?", new String[]{"Kat"}),
                 new TriviaQuestion("What is the name of the lady of the Nether?", new String[]{"Elle"}),
                 new TriviaQuestion("Which villager in the Village gives you a Rogue Sword?", new String[]{"Jamie"}),
-                new TriviaQuestion("How many unique minions are there?", new String[]{"53 Minions"}),
+                new TriviaQuestion("How many unique minions are there?", new String[]{"54 Minions"}),
                 new TriviaQuestion("Which of these enemies does not spawn in the Spider's Den?", new String[]{
                         "Zombie Spider",
                         "Cave Spider",
