@@ -12,7 +12,7 @@ import net.minecraft.util.math.*;
 import org.lwjgl.opengl.GL11;
 
 public class RenderUtils {
-    public static void renderSolidBox(int x, int y, int z, int width, int height, int depth, WorldRenderContext renderer) {
+    public static void renderSolidBox(float x, float y, float z, float width, float height, float depth, WorldRenderContext renderer) {
         Camera camera = BlockEntityRenderDispatcher.INSTANCE.camera;
         RenderSystem.lineWidth(2.0f);
         RenderSystem.disableTexture();
@@ -23,9 +23,9 @@ public class RenderUtils {
         renderer.matrixStack().translate(-camPos.x, -camPos.y, -camPos.z);
         Matrix4f model = renderer.matrixStack().peek().getModel();
 
-        int maxX = x + width;
-        int maxY = y + height;
-        int maxZ = z + depth;
+        float maxX = x + width;
+        float maxY = y + height;
+        float maxZ = z + depth;
 
 
         Tessellator tessellator = Tessellator.getInstance();
