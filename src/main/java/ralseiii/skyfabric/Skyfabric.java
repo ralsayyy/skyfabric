@@ -7,7 +7,7 @@ package ralseiii.skyfabric;
 import me.shedaniel.autoconfig.AutoConfig;
 import me.shedaniel.autoconfig.serializer.GsonConfigSerializer;
 import net.minecraft.client.MinecraftClient;
-import ralseiii.skyfabric.config.Config;
+import ralseiii.skyfabric.config.ModConfig;
 import ralseiii.skyfabric.hud.dungeon.DungeonMainHUD;
 import ralseiii.skyfabric.hud.dungeon.DungeonMap;
 import ralseiii.skyfabric.solvers.dungeon.chat.ThreeWeirdos;
@@ -26,8 +26,7 @@ public class Skyfabric implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
         // register config file
-        AutoConfig.register(Config.ModConfig.class, GsonConfigSerializer::new);
-        Config.config = AutoConfig.getConfigHolder(Config.ModConfig.class).getConfig();
+        AutoConfig.register(ModConfig.class, GsonConfigSerializer::new);
         DungeonMainHUD.registerHUD();
         DungeonMap.registerHUD();
         ThreeWeirdos.register();
@@ -45,6 +44,7 @@ public class Skyfabric implements ClientModInitializer {
                     BlazeSolver.blazeSolver();
             }
             tickCounter = 0;
+
         }
     }
 }
