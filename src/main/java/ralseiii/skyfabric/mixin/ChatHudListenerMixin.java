@@ -12,6 +12,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import ralseiii.skyfabric.solvers.dungeon.chat.ThreeWeirdos;
 import ralseiii.skyfabric.solvers.dungeon.chat.triviaQuiz;
+import ralseiii.skyfabric.solvers.dwarven.PuzzlerSolver;
 import ralseiii.skyfabric.utils.SbChecks;
 import ralseiii.skyfabric.solvers.dwarven.FetchurSolver;
 
@@ -40,6 +41,14 @@ public class ChatHudListenerMixin {
                         client.player.sendMessage(Text.of("§8[Skyfabric]§r: Fetchur wants §a[" + fetchurItemText.getString() + "]§r"), false);
                         ci.cancel();
                     }
+                } else if (msg.contains("Puzzler") && !msg.contains("Come") && !msg.contains("Nice!")) {
+                    client.player.sendMessage(message, false);
+                    PuzzlerSolver.solve(msg);
+                    ci.cancel();
+                } else if (msg.contains("Puzzler") && msg.contains("Nice!")) {
+                    client.player.sendMessage(message, false);
+                    PuzzlerSolver.renderOverlay = false;
+                    ci.cancel();
                 }
             }
             if (SbChecks.isCatacombs) {
