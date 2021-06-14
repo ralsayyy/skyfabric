@@ -12,7 +12,7 @@ import net.minecraft.util.math.*;
 import org.lwjgl.opengl.GL11;
 
 public class RenderUtils {
-    public static void renderSolidBox(float x, float y, float z, float width, float height, float depth, WorldRenderContext renderer) {
+    public static void renderSolidBox(float x, float y, float z, float width, float height, float depth, WorldRenderContext renderer, int r, int g, int b, float alpha) {
         Camera camera = BlockEntityRenderDispatcher.INSTANCE.camera;
         RenderSystem.lineWidth(2.0f);
         RenderSystem.disableTexture();
@@ -30,40 +30,41 @@ public class RenderUtils {
 
         Tessellator tessellator = Tessellator.getInstance();
         BufferBuilder bufferBuilder = tessellator.getBuffer();
-        float green = 1.0f;
-        float alpha = 0.5f;
+        float realGreen = ((float) g)/ 255;
+        float realRed = ((float) r)/ 255;
+        float realBlue = ((float) b)/ 255;
 
         bufferBuilder.begin(GL11.GL_QUADS, VertexFormats.POSITION_COLOR);
 
-        bufferBuilder.vertex(model, x, y, z).color(0, green, 0, alpha).next();
-        bufferBuilder.vertex(model, maxX, y, z).color(0, green, 0, alpha).next();
-        bufferBuilder.vertex(model, maxX, y, maxZ).color(0, green, 0, alpha).next();
-        bufferBuilder.vertex(model, x, y, maxZ).color(0, green, 0, alpha).next();
+        bufferBuilder.vertex(model, x, y, z).color(realRed, realGreen, realBlue, alpha).next();
+        bufferBuilder.vertex(model, maxX, y, z).color(realRed, realGreen, realBlue, alpha).next();
+        bufferBuilder.vertex(model, maxX, y, maxZ).color(realRed, realGreen, realBlue, alpha).next();
+        bufferBuilder.vertex(model, x, y, maxZ).color(realRed, realGreen, realBlue, alpha).next();
 
-        bufferBuilder.vertex(model, x, maxY, z).color(0, green, 0, alpha).next();
-        bufferBuilder.vertex(model, x, maxY, maxZ).color(0, green, 0, alpha).next();
-        bufferBuilder.vertex(model, maxX, maxY, maxZ).color(0, green, 0, alpha).next();
-        bufferBuilder.vertex(model, maxX, maxY, z).color(0, green, 0, alpha).next();
+        bufferBuilder.vertex(model, x, maxY, z).color(realRed, realGreen, realBlue, alpha).next();
+        bufferBuilder.vertex(model, x, maxY, maxZ).color(realRed, realGreen, realBlue, alpha).next();
+        bufferBuilder.vertex(model, maxX, maxY, maxZ).color(realRed, realGreen, realBlue, alpha).next();
+        bufferBuilder.vertex(model, maxX, maxY, z).color(realRed, realGreen, realBlue, alpha).next();
 
-        bufferBuilder.vertex(model, x, y, z).color(0, green, 0, alpha).next();
-        bufferBuilder.vertex(model, x, maxY, z).color(0, green, 0, alpha).next();
-        bufferBuilder.vertex(model, maxX, maxY, z).color(0, green, 0, alpha).next();
-        bufferBuilder.vertex(model, maxX, y, z).color(0, green, 0, alpha).next();
+        bufferBuilder.vertex(model, x, y, z).color(realRed, realGreen, realBlue, alpha).next();
+        bufferBuilder.vertex(model, x, maxY, z).color(realRed, realGreen, realBlue, alpha).next();
+        bufferBuilder.vertex(model, maxX, maxY, z).color(realRed, realGreen, realBlue, alpha).next();
+        bufferBuilder.vertex(model, maxX, y, z).color(realRed, realGreen, realBlue, alpha).next();
 
-        bufferBuilder.vertex(model, maxX, y, z).color(0, green, 0, alpha).next();
-        bufferBuilder.vertex(model, maxX, maxY, z).color(0, green, 0, alpha).next();
-        bufferBuilder.vertex(model, maxX, maxY, maxZ).color(0, green, 0, alpha).next();
-        bufferBuilder.vertex(model, maxX, y, maxZ).color(0, green, 0, alpha).next();
+        bufferBuilder.vertex(model, maxX, y, z).color(realRed, realGreen, realBlue, alpha).next();
+        bufferBuilder.vertex(model, maxX, maxY, z).color(realRed, realGreen, realBlue, alpha).next();
+        bufferBuilder.vertex(model, maxX, maxY, maxZ).color(realRed, realGreen, realBlue, alpha).next();
+        bufferBuilder.vertex(model, maxX, y, maxZ).color(realRed, realGreen, realBlue, alpha).next();
 
-        bufferBuilder.vertex(model, x, y, maxZ).color(0, green, 0, alpha).next();
-        bufferBuilder.vertex(model, maxX, y, maxZ).color(0, green, 0, alpha).next();
-        bufferBuilder.vertex(model, maxX, maxY, maxZ).color(0, green, 0, alpha).next();
-        bufferBuilder.vertex(model, x, maxY, maxZ).color(0, green, 0, alpha).next();
+        bufferBuilder.vertex(model, x, y, maxZ).color(realRed, realGreen, realBlue, alpha).next();
+        bufferBuilder.vertex(model, maxX, y, maxZ).color(realRed, realGreen, realBlue, alpha).next();
+        bufferBuilder.vertex(model, maxX, maxY, maxZ).color(realRed, realGreen, realBlue, alpha).next();
+        bufferBuilder.vertex(model, x, maxY, maxZ).color(realRed, realGreen, realBlue, alpha).next();
 
-        bufferBuilder.vertex(model, x, y, z).color(0, green, 0, alpha).next();
-        bufferBuilder.vertex(model, x, y, maxZ).color(0, green, 0, alpha).next();
-        bufferBuilder.vertex(model, x, maxY, maxZ).color(0, green, 0, alpha).next();
-        bufferBuilder.vertex(model, x, maxY, z).color(0, green, 0, alpha).next();
+        bufferBuilder.vertex(model, x, y, z).color(realRed, realGreen, realBlue, alpha).next();
+        bufferBuilder.vertex(model, x, y, maxZ).color(realRed, realGreen, realBlue, alpha).next();
+        bufferBuilder.vertex(model, x, maxY, maxZ).color(realRed, realGreen, realBlue, alpha).next();
+        bufferBuilder.vertex(model, x, maxY, z).color(realRed, realGreen, realBlue, alpha).next();
         tessellator.draw();
         RenderSystem.enableTexture();
         RenderSystem.disableBlend();
