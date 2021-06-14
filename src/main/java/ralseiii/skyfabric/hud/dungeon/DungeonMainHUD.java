@@ -19,7 +19,7 @@ public class DungeonMainHUD {
                 /*HudRenderCallback.EVENT.register(((matrixStack, tickDelta) -> {
                         Config.ModConfig config = AutoConfig.getConfigHolder(Config.ModConfig.class).getConfig();
                         if (SbChecks.isCatacombs && config.dungeonHud) {
-                                String secrets = null;
+                                String secrets;
                                 MinecraftClient client = MinecraftClient.getInstance();
                                 PlayerListHud playerListHud = client.inGameHud.getPlayerListHud();
                                 int xpLevel = PlayerUtils.getExpLevel();
