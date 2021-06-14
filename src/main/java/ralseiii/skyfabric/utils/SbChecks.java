@@ -17,6 +17,7 @@ import net.minecraft.scoreboard.Team;
 import net.minecraft.client.gui.hud.PlayerListHud;
 import net.minecraft.text.Text;
 import ralseiii.skyfabric.mixin.PlayerHudAccessor;
+import ralseiii.skyfabric.solvers.dungeon.chat.ThreeWeirdos;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -59,14 +60,17 @@ public class SbChecks {
             if (list.get(0).toString().contains("SKYBLOCK")) {
                 isSkyblock = true;
                 isCatacombs = scoreboardString.contains("The Catacombs");
+                if (!isCatacombs)
+                    ThreeWeirdos.renderOverlay = false;
             } else {
                 isSkyblock = false;
                 isCatacombs = false;
+                ThreeWeirdos.renderOverlay = false;
             }
         }
 
         // check player list for amount of secrets
-        if (!isCatacombs) return;
+        /*if (!isCatacombs) return;
         if (client.player == null) return;
         Collection<PlayerListEntry> playerListEntryList = client.player.networkHandler.getPlayerList();
         for (PlayerListEntry entry : playerListEntryList) {
@@ -78,10 +82,11 @@ public class SbChecks {
                 if (playerNameTextSiblingList.get(0).getString().contains("Secrets found:") && scoreboardObjective2 != null) {
                     // System.out.println(playerNameTextSiblingList.get(0));
                     PlayerUtils.secretsAmount = String.valueOf(scoreboard.getPlayerScore(entry.getProfile().getName(), scoreboardObjective2).getScore());
+                    System.out.println(playerNameTextSiblingList.get(0).getString()")
                     // PlayerUtils.secretsAmount = playerNameTextSiblingList.get(0).getString().substring(playerNameTextSiblingList.get(0).getString().indexOf(" "));
                 }
             }
-        }
+        }*/
 
     }
 }
