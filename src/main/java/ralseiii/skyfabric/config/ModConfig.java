@@ -16,8 +16,5 @@ public class ModConfig implements ConfigData {
     @ConfigEntry.Gui.CollapsibleObject
     public Config.DungeonConfigDropdown dungeonConfigDropdown = new Config.DungeonConfigDropdown();
 
-    public Boolean dungeonHud = true;
-    public Boolean dungeonMap = true;
-
 
 }

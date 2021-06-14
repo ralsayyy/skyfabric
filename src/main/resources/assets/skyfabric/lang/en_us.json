@@ -7,5 +7,11 @@
  "text.autoconfig.skyfabric.option.solverConfigDropdown.dungeonSolverConfigDropdown.Three_Weirdos": "Three Weirdos",
  "text.autoconfig.skyfabric.option.solverConfigDropdown.dungeonSolverConfigDropdown.HigherSolver": "Higher or Lower",
  "text.autoconfig.skyfabric.option.solverConfigDropdown.dwarvenSolverConfigDropdown": "Dwarven Mines Solvers",
- "text.autoconfig.skyfabric.option.solverConfigDropdown.dwarvenSolverConfigDropdown.Fetchur": "Fetchur"
+ "text.autoconfig.skyfabric.option.solverConfigDropdown.dwarvenSolverConfigDropdown.Fetchur": "Fetchur",
+ "text.autoconfig.skyfabric.option.dungeonConfigDropdown": "Dungeons",
+ "text.autoconfig.skyfabric.option.dungeonConfigDropdown.dungeonMapConfigDropdown": "Dungeon Minimap",
+ "text.autoconfig.skyfabric.option.dungeonConfigDropdown.dungeonMapConfigDropdown.Enabled": "Dungeon Minimap",
+ "text.autoconfig.skyfabric.option.dungeonConfigDropdown.dungeonMapConfigDropdown.uiElementPosition": "Position",
+ "text.autoconfig.skyfabric.option.dungeonConfigDropdown.dungeonMapConfigDropdown.uiElementPosition.x": "x",
+ "text.autoconfig.skyfabric.option.dungeonConfigDropdown.dungeonMapConfigDropdown.uiElementPosition.y": "y"
 }

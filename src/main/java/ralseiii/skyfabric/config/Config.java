@@ -38,8 +38,8 @@ public class Config {
     }
 
     public static class DungeonConfigDropdown {
-        @ConfigEntry.Gui.CollapsibleObject
-        public DungeonHudConfigDropdown dungeonHudConfigDropdown = new DungeonHudConfigDropdown();
+        //@ConfigEntry.Gui.CollapsibleObject
+        //public DungeonHudConfigDropdown dungeonHudConfigDropdown = new DungeonHudConfigDropdown();
         @ConfigEntry.Gui.CollapsibleObject
         public DungeonMapConfigDropdown dungeonMapConfigDropdown = new DungeonMapConfigDropdown();
     }
