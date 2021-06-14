@@ -10,6 +10,8 @@ import net.minecraft.client.MinecraftClient;
 import ralseiii.skyfabric.config.Config;
 import ralseiii.skyfabric.hud.dungeon.DungeonMainHUD;
 import ralseiii.skyfabric.hud.dungeon.DungeonMap;
+import ralseiii.skyfabric.solvers.dungeon.chat.ThreeWeirdos;
+import ralseiii.skyfabric.solvers.dwarven.PuzzlerSolver;
 import ralseiii.skyfabric.utils.SbChecks;
 import ralseiii.skyfabric.solvers.dungeon.entity.BlazeSolver;
 
@@ -28,6 +30,8 @@ public class Skyfabric implements ClientModInitializer {
         Config.config = AutoConfig.getConfigHolder(Config.ModConfig.class).getConfig();
         DungeonMainHUD.registerHUD();
         DungeonMap.registerHUD();
+        ThreeWeirdos.register();
+        PuzzlerSolver.register();
     }
 
     public static void onTick() {
