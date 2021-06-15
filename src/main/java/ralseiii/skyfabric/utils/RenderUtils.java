@@ -70,4 +70,31 @@ public class RenderUtils {
         RenderSystem.disableBlend();
         renderer.matrixStack().pop();
     }
+
+    public static void renderSolidLine(float x, float y, float z, float endX, float endY, float endZ, WorldRenderContext renderer, int r, int g, int b, float alpha) {
+        Camera camera = BlockEntityRenderDispatcher.INSTANCE.camera;
+        RenderSystem.lineWidth(2.0f);
+        RenderSystem.disableTexture();
+        RenderSystem.enableBlend();
+        RenderSystem.enableDepthTest();
+        Vec3d camPos = camera.getPos();
+        renderer.matrixStack().push();
+        renderer.matrixStack().translate(-camPos.x, -camPos.y, -camPos.z);
+        Matrix4f model = renderer.matrixStack().peek().getModel();
+
+        Tessellator tessellator = Tessellator.getInstance();
+        BufferBuilder bufferBuilder = tessellator.getBuffer();
+        float realGreen = ((float) g)/ 255;
+        float realRed = ((float) r)/ 255;
+        float realBlue = ((float) b)/ 255;
+
+        bufferBuilder.begin(GL11.GL_LINE, VertexFormats.POSITION_COLOR);
+
+        bufferBuilder.vertex(model, x, y, z).color(realRed, realGreen, realBlue, alpha).next();
+        bufferBuilder.vertex(model, endX, endY, endZ).color(realRed, realGreen, realBlue, alpha).next();
+        tessellator.draw();
+        RenderSystem.enableTexture();
+        RenderSystem.disableBlend();
+        renderer.matrixStack().pop();
+    }
 }
