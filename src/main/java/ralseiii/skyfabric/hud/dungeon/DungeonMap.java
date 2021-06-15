@@ -29,6 +29,7 @@ public class DungeonMap {
                 CompoundTag tag = item.getTag();
                 if (tag != null && tag.contains("map")) {
                     MapState state = FilledMapItem.getMapState(item, client.world);
+                    if (state == null) return;
                     VertexConsumerProvider.Immediate vertices = client.getBufferBuilders().getEffectVertexConsumers();
                     matrixStack.push();
                     matrixStack.scale(1, 1, 0);
