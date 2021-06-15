@@ -24,9 +24,9 @@ public class PuzzlerSolver {
             else if (c == "▼".toCharArray()[0])
                 rewardZ--;
             else if (c == "◀".toCharArray()[0])
-                rewardX--;
-            else if (c == "▶".toCharArray()[0])
                 rewardX++;
+            else if (c == "▶".toCharArray()[0])
+                rewardX--;
         }
         renderOverlay = true;
     }
