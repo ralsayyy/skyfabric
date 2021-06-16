@@ -31,7 +31,7 @@ public class Config {
     }
 
     public static class DungeonMapConfigDropdown {
-        public Boolean Enabled;
+        public Boolean Enabled = true;
         @ConfigEntry.Gui.CollapsibleObject
         public UiElementPosition uiElementPosition = new UiElementPosition();
 
