@@ -21,6 +21,7 @@ import ralseiii.skyfabric.utils.api.Bazaar;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
+import ralseiii.skyfabric.utils.api.auctions.LowestBin;
 
 @Environment(EnvType.CLIENT)
 public class Skyfabric implements ClientModInitializer {
@@ -54,6 +55,7 @@ public class Skyfabric implements ClientModInitializer {
         }
         if (apiTickCounter / (5 * 60 * 20) == 1) {
             Bazaar.update();
+            LowestBin.update();
             apiTickCounter = 0;
         }
     }
