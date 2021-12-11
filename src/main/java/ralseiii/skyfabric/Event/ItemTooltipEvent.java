@@ -7,26 +7,22 @@ import ralseiii.skyfabric.utils.ItemUtils;
 import ralseiii.skyfabric.utils.api.Bazaar;
 import ralseiii.skyfabric.utils.api.auctions.LowestBin;
 
+import java.text.NumberFormat;
 import java.util.List;
+import java.util.Locale;
 
 public class ItemTooltipEvent {
-
-    static Double limitDecimal(double input, int decimals) {
-        return Math.floor(input * Math.pow(10, decimals)) / Math.pow(10, decimals);
-    }
-
     public static void onItemTooltip(ItemStack item, List<Text> lines) {
         String id = ItemUtils.getItemId(item);
         if (id == null || id.isEmpty())
             return;
+        NumberFormat format = NumberFormat.getInstance(Locale.US);
         if (Bazaar.isBazaarItem(id)) {
-            double sellPrice = Screen.hasShiftDown() ? Bazaar.getSellPriceForId(id) * item.getCount() : Bazaar.getSellPriceForId(id);
-            double buyPrice = Screen.hasShiftDown() ? Bazaar.getBuyPriceForId(id) * item.getCount() : Bazaar.getBuyPriceForId(id);
-            lines.add(Text.of("§lBazaar Sell:§r " + limitDecimal(sellPrice, 1)));
-            lines.add(Text.of("§lBazaar Buy:§r " + limitDecimal(buyPrice, 1)));
+            lines.add(Text.of("§lBazaar Buy:§r " + format.format(Screen.hasShiftDown() ? Bazaar.getBuyPriceForId(id) * item.getCount() : Bazaar.getBuyPriceForId(id))));
+            lines.add(Text.of("§lBazaar Sell:§r " + format.format(Screen.hasShiftDown() ? Bazaar.getSellPriceForId(id) * item.getCount() : Bazaar.getSellPriceForId(id))));
         }
         if (LowestBin.isAvailable(id)) {
-            lines.add(Text.of("§lLowest BIN:§r " + LowestBin.get(id)));
+            lines.add(Text.of("§lLowest BIN:§r " + format.format(LowestBin.get(id))));
         }
     }
 }

@@ -11,7 +11,7 @@ import java.util.Map;
 import java.util.Scanner;
 
 public class LowestBin {
-    static Map<String, Double> priceMap = new HashMap<>();
+    static Map<String, Long> priceMap = new HashMap<>();
     public static void update() {
         try {
             // use skytils' api to fetch lowest bin
@@ -27,7 +27,7 @@ public class LowestBin {
                 s.close();
                 JsonObject items = new Gson().fromJson(b.toString(), JsonObject.class);
                 for (Map.Entry<String, JsonElement> entry : items.entrySet()) {
-                    priceMap.put(entry.getKey(), entry.getValue().getAsDouble());
+                    priceMap.put(entry.getKey(), entry.getValue().getAsLong());
                 }
             }
 
@@ -36,8 +36,8 @@ public class LowestBin {
         }
     }
 
-    public static Double get(String id) {
-        return priceMap.getOrDefault(id, 0d);
+    public static Long get(String id) {
+        return priceMap.getOrDefault(id, 0L);
     }
 
     public static Boolean isAvailable(String id) {
