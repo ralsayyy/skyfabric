@@ -29,7 +29,7 @@ public class BlazeSolver {
     static List<BlazeInfo> blazeList = new LinkedList<>();
     public static void register() {
         WorldRenderEvents.END.register((context) -> {
-            if (blazeList.size() != 0) {
+            if (SbChecks.isCatacombs && blazeList.size() != 0) {
                 BlazeInfo lowestBlaze = blazeList.get(0);
                 BlazeInfo highestBlaze = blazeList.get(blazeList.size() - 1);
                 RenderUtils.renderSolidBox((float) lowestBlaze.pos.x - 0.5f, (float) lowestBlaze.pos.y, (float) lowestBlaze.pos.z - 0.5f, 1, 2, 1, context, 0, 255, 0, 0.7f);
