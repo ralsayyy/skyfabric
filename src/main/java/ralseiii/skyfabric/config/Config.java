@@ -51,4 +51,8 @@ public class Config {
         @ConfigEntry.Gui.CollapsibleObject
         public DwarvenSolverConfigDropdown dwarvenSolverConfigDropdown = new DwarvenSolverConfigDropdown();
     }
+    public static class ApiUsage {
+        public Boolean bazaarPrice;
+        public String apiKey;
+    }
 }

@@ -73,8 +73,8 @@ public class RenderUtils {
 
     public static void renderSolidLine(float x, float y, float z, float endX, float endY, float endZ, WorldRenderContext renderer, int r, int g, int b, float alpha) {
         Camera camera = BlockEntityRenderDispatcher.INSTANCE.camera;
-        RenderSystem.lineWidth(2.0f);
         RenderSystem.disableTexture();
+        RenderSystem.lineWidth(2.0f);
         RenderSystem.enableBlend();
         RenderSystem.enableDepthTest();
         Vec3d camPos = camera.getPos();
@@ -88,10 +88,12 @@ public class RenderUtils {
         float realRed = ((float) r)/ 255;
         float realBlue = ((float) b)/ 255;
 
-        bufferBuilder.begin(GL11.GL_LINE, VertexFormats.POSITION_COLOR);
+        bufferBuilder.begin(GL11.GL_QUADS, VertexFormats.POSITION_COLOR);
 
         bufferBuilder.vertex(model, x, y, z).color(realRed, realGreen, realBlue, alpha).next();
+        bufferBuilder.vertex(model, x, y + 0.1f, z).color(realRed, realGreen, realBlue, alpha).next();
         bufferBuilder.vertex(model, endX, endY, endZ).color(realRed, realGreen, realBlue, alpha).next();
+        bufferBuilder.vertex(model, endX, endY + 0.1f, endZ).color(realRed, realGreen, realBlue, alpha).next();
         tessellator.draw();
         RenderSystem.enableTexture();
         RenderSystem.disableBlend();
