@@ -32,7 +32,7 @@ public class Skyfabric implements ClientModInitializer {
         // register config file
         AutoConfig.register(ModConfig.class, GsonConfigSerializer::new);
         // DungeonMainHUD.registerHUD();
-        // DungeonMap.registerHUD();
+        DungeonMap.registerHUD();
         ThreeWeirdos.register();
         PuzzlerSolver.register();
         BlazeSolver.register();

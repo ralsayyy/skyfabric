@@ -28,7 +28,6 @@ public class RenderUtils {
         float maxY = y + height;
         float maxZ = z + depth;
 
-
         Tessellator tessellator = Tessellator.getInstance();
         BufferBuilder bufferBuilder = tessellator.getBuffer();
         float realGreen = ((float) g)/ 255;
