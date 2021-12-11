@@ -1,60 +1,59 @@
 package ralseiii.skyfabric.solvers.dungeon.entity;
 
+import net.fabricmc.fabric.api.client.rendering.v1.WorldRenderEvents;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.entity.decoration.ArmorStandEntity;
-import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
+import ralseiii.skyfabric.utils.Position;
+import ralseiii.skyfabric.utils.RenderUtils;
+import ralseiii.skyfabric.utils.SbChecks;
+
+import java.util.Collections;
+import java.util.LinkedList;
+import java.util.List;
 
 /* This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at https://mozilla.org/MPL/2.0/. */
 
+class BlazeInfo implements Comparable<BlazeInfo> {
+    Integer health = 0;
+    Position pos = new Position();
+
+    @Override
+    public int compareTo(BlazeInfo o) {
+        return health.compareTo(o.health);
+    }
+}
+
 public class BlazeSolver {
-    public static int highestHealth = 0;
-    public static int lowestHealth = 0;
+    static List<BlazeInfo> blazeList = new LinkedList<>();
+    public static void register() {
+        WorldRenderEvents.END.register((context) -> {
+            if (blazeList.size() != 0) {
+                BlazeInfo lowestBlaze = blazeList.get(0);
+                BlazeInfo highestBlaze = blazeList.get(blazeList.size() - 1);
+                RenderUtils.renderSolidBox((float) lowestBlaze.pos.x - 0.5f, (float) lowestBlaze.pos.y, (float) lowestBlaze.pos.z - 0.5f, 1, 2, 1, context, 0, 255, 0, 0.7f);
+                RenderUtils.renderSolidBox((float) highestBlaze.pos.x - 0.5f, (float) highestBlaze.pos.y, (float) highestBlaze.pos.z - 0.5f, 1, 2, 1, context, 255, 0, 0, 0.7f);
+            }
+        });
+    }
     public static void blazeSolver() {
-        highestHealth = 0;
-        lowestHealth = 1234567890;
         MinecraftClient minecraftClient = MinecraftClient.getInstance();
+        blazeList.clear();
         if (minecraftClient == null || minecraftClient.world == null || minecraftClient.player == null) return;
         minecraftClient.world.getEntitiesByClass(ArmorStandEntity.class, minecraftClient.player.getBoundingBox().expand(20, 70, 20), entity -> {
             return entity.hasCustomName() && entity.getCustomName().getString().contains("Blaze");
         }).forEach(entity -> {
-            String blazeName = entity.getCustomName().getString();
-            String healthAsString = blazeName.substring(blazeName.indexOf("e") + 3, blazeName.indexOf("/") - 2);
-            if (blazeName.contains("x")) blazeName = blazeName.substring(4);
+            String name = entity.getCustomName().getString();
             try {
-                int health = Integer.parseInt(healthAsString);
-                if (health > highestHealth) {
-                    highestHealth = health;
-                }
-                if (health < lowestHealth) {
-                    lowestHealth = health;
-                }
-            } catch (java.lang.NumberFormatException exception) {
+                BlazeInfo info = new BlazeInfo();
+                info.pos.set(entity.getX(), entity.getY(), entity.getZ());
+                info.health = Integer.parseInt(name.substring(name.indexOf("e") + 3, name.indexOf("/") - 2));
+                blazeList.add(info);
+            } catch (NumberFormatException ignored) {
+                System.out.println("blaze number format invalid");
             }
         });
-        minecraftClient.world.getEntitiesByClass(ArmorStandEntity.class, minecraftClient.player.getBoundingBox().expand(20, 70, 20), entity -> {
-            return entity.hasCustomName() && entity.getCustomName().getString().contains("Blaze");
-        }).forEach(entity -> {
-            String blazeName = entity.getCustomName().getString();
-            String healthAsString = blazeName.substring(blazeName.indexOf("e") + 3, blazeName.indexOf("/") - 2);
-            if (blazeName.contains("x")) blazeName = blazeName.substring(4);
-            try {
-                int health = Integer.parseInt(healthAsString);
-                if (health == highestHealth) {
-                    entity.setCustomName(Text.of(Formatting.BLUE + "Highest " + blazeName));
-                    return;
-                }
-                if (health == lowestHealth) {
-                    entity.setCustomName(Text.of(Formatting.GREEN + "Lowest " + blazeName));
-                    return;
-                }
-            } catch (java.lang.NumberFormatException exception) {
-                return;
-            }
-
-            entity.setCustomName(Text.of(Formatting.RED + blazeName));
-        });
+        Collections.sort(blazeList);
     }
 }

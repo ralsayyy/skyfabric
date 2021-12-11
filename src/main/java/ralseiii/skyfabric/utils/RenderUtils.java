@@ -8,7 +8,8 @@ import com.mojang.blaze3d.systems.RenderSystem;
 import net.fabricmc.fabric.api.client.rendering.v1.WorldRenderContext;
 import net.minecraft.client.render.*;
 import net.minecraft.client.render.block.entity.BlockEntityRenderDispatcher;
-import net.minecraft.util.math.*;
+import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.math.Matrix4f;
 import org.lwjgl.opengl.GL11;
 
 public class RenderUtils {

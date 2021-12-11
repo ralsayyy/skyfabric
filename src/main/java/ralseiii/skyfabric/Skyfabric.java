@@ -35,6 +35,7 @@ public class Skyfabric implements ClientModInitializer {
         // DungeonMap.registerHUD();
         ThreeWeirdos.register();
         PuzzlerSolver.register();
+        BlazeSolver.register();
         ItemTooltipCallback.EVENT.register((itemStack, context, lines) -> ItemTooltipEvent.onItemTooltip(itemStack, lines));
         // CreeperSolver.register();
     }
@@ -47,7 +48,7 @@ public class Skyfabric implements ClientModInitializer {
             if (minecraftClient.world != null && !minecraftClient.isInSingleplayer()) {
                 SbChecks.checkSkyblock();
                if (SbChecks.isCatacombs) {
-                //   BlazeSolver.blazeSolver();
+                   BlazeSolver.blazeSolver();
                    // CreeperSolver.solve();
                }
             }
