@@ -12,20 +12,7 @@ import java.net.URL;
 import java.util.Scanner;
 import java.util.concurrent.atomic.AtomicReference;
 
-public class Bazaar extends Thread {
-    public final Short notifyObject = 0;
-    public void run() {
-        while (true) {
-            synchronized (notifyObject) {
-                try {
-                    notifyObject.wait();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
-            update();
-        }
-    }
+public class Bazaar {
     static AtomicReference<Map<String, Long>> bazaarSellPriceMapReference = new AtomicReference<>();
     static AtomicReference<Map<String, Long>> bazaarBuyPriceMapReference = new AtomicReference<>();
     public static void update() {

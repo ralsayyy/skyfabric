@@ -11,23 +11,8 @@ import java.util.Map;
 import java.util.Scanner;
 import java.util.concurrent.atomic.AtomicReference;
 
-public class LowestBin extends Thread {
-    public final Short notifyObject = 0;
+public class LowestBin {
     static AtomicReference<Map<String, Long>> priceMapReference = new AtomicReference<>();
-    public void run() {
-        while (true) {
-
-            synchronized (notifyObject) {
-                try {
-                    notifyObject.wait();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
-            update();
-
-        }
-    }
     public static void update() {
         try {
             // use skytils' api to fetch lowest bin
