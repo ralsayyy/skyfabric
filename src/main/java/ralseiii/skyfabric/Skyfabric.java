@@ -26,6 +26,8 @@ import ralseiii.skyfabric.utils.api.auctions.LowestBin;
 @Environment(EnvType.CLIENT)
 public class Skyfabric implements ClientModInitializer {
     private static int tickCounter = 0;
+    private static final Bazaar bazaar = new Bazaar();
+    private static final LowestBin lowestBin = new LowestBin();
     private static int apiTickCounter = (5 * 60 * 20);
     @Override
     public void onInitializeClient() {
@@ -36,6 +38,8 @@ public class Skyfabric implements ClientModInitializer {
         ThreeWeirdos.register();
         PuzzlerSolver.register();
         BlazeSolver.register();
+        bazaar.start();
+        lowestBin.start();
         ItemTooltipCallback.EVENT.register((itemStack, context, lines) -> ItemTooltipEvent.onItemTooltip(itemStack, lines));
         // CreeperSolver.register();
     }
@@ -55,8 +59,12 @@ public class Skyfabric implements ClientModInitializer {
             tickCounter = 0;
         }
         if (apiTickCounter / (5 * 60 * 20) == 1) {
-            Bazaar.update();
-            LowestBin.update();
+            synchronized (bazaar.notifyObject) {
+                bazaar.notifyObject.notify();
+            }
+            synchronized (lowestBin.notifyObject) {
+                lowestBin.notifyObject.notify();
+            }
             apiTickCounter = 0;
         }
     }
