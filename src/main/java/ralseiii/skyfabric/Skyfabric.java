@@ -10,6 +10,7 @@ import net.fabricmc.fabric.api.client.item.v1.ItemTooltipCallback;
 import net.minecraft.client.MinecraftClient;
 import ralseiii.skyfabric.Event.ItemTooltipEvent;
 import ralseiii.skyfabric.config.ModConfig;
+import ralseiii.skyfabric.hud.CrystalHollowsMap;
 import ralseiii.skyfabric.hud.dungeon.DungeonMap;
 import ralseiii.skyfabric.solvers.dungeon.chat.ThreeWeirdos;
 import ralseiii.skyfabric.solvers.dwarven.PuzzlerSolver;
@@ -30,6 +31,7 @@ public class Skyfabric implements ClientModInitializer {
         // register config file
         AutoConfig.register(ModConfig.class, GsonConfigSerializer::new);
         DungeonMap.register();
+        CrystalHollowsMap.register();
         ThreeWeirdos.register();
         PuzzlerSolver.register();
         BlazeSolver.register();

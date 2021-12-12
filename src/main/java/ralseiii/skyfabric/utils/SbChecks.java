@@ -26,6 +26,7 @@ import java.util.stream.Collectors;
 public class SbChecks {
     public static Boolean isSkyblock = false;
     public static Boolean isCatacombs = false;
+    public static Boolean isCrystalHollows = false;
     public static void checkSkyblock() {
         List<String> list = new ArrayList<>();
         MinecraftClient client = MinecraftClient.getInstance();
@@ -60,6 +61,19 @@ public class SbChecks {
             if (list.get(0).toString().contains("SKYBLOCK")) {
                 isSkyblock = true;
                 isCatacombs = scoreboardString.contains("The Catacombs");
+                if (scoreboardString.contains("Precursor Remnants") ||
+                    scoreboardString.contains("Khazad-dûm") ||
+                    scoreboardString.contains("Jungle") ||
+                    scoreboardString.contains("Mithril Deposits") ||
+                    scoreboardString.contains("Goblin Holdout") ||
+                    scoreboardString.contains("Goblin Queen's Den") ||
+                    scoreboardString.contains("Lost Precursor City") ||
+                    scoreboardString.contains("Crystal Nucleus") ||
+                    scoreboardString.contains("Crystal Hollows") ||
+                    scoreboardString.contains("Magma Fields") ||
+                    scoreboardString.contains("Fairy Grotto") ||
+                    scoreboardString.contains("Dragon's Lair"))
+                    isCrystalHollows = true;
                 if (!isCatacombs)
                     ThreeWeirdos.renderOverlay = false;
             } else {
