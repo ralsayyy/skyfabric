@@ -64,7 +64,7 @@ public class ChatHudListenerMixin {
                         ci.cancel();
                     }
                 }
-                if (msg.contains("asn't fooled by ")) {
+                if (msg.contains("wasn't fooled by") || msg.contains("was fooled by")) {
                     ThreeWeirdos.renderOverlay = false;
                 }
                 // Trivia question

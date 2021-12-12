@@ -18,11 +18,11 @@ public class ItemTooltipEvent {
             return;
         NumberFormat format = NumberFormat.getInstance(Locale.US);
         if (Bazaar.isBazaarItem(id)) {
-            lines.add(Text.of("§lBazaar Buy:§r " + format.format(Screen.hasShiftDown() ? Bazaar.getBuyPriceForId(id) * item.getCount() : Bazaar.getBuyPriceForId(id))));
-            lines.add(Text.of("§lBazaar Sell:§r " + format.format(Screen.hasShiftDown() ? Bazaar.getSellPriceForId(id) * item.getCount() : Bazaar.getSellPriceForId(id))));
+            lines.add(Text.of("§lBazaar Buy:§r " + format.format(Screen.hasShiftDown() ? Bazaar.getBuyPriceForId(id) * item.getCount() : Bazaar.getBuyPriceForId(id)) + " coins"));
+            lines.add(Text.of("§lBazaar Sell:§r " + format.format(Screen.hasShiftDown() ? Bazaar.getSellPriceForId(id) * item.getCount() : Bazaar.getSellPriceForId(id)) + " coins"));
         }
         if (LowestBin.isAvailable(id)) {
-            lines.add(Text.of("§lLowest BIN:§r " + format.format(LowestBin.get(id))));
+            lines.add(Text.of("§lLowest BIN:§r " + format.format(LowestBin.get(id)) + " coins"));
         }
     }
 }
