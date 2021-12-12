@@ -7,7 +7,6 @@ package ralseiii.skyfabric;
 import me.shedaniel.autoconfig.AutoConfig;
 import me.shedaniel.autoconfig.serializer.GsonConfigSerializer;
 import net.fabricmc.fabric.api.client.item.v1.ItemTooltipCallback;
-import net.minecraft.client.MinecraftClient;
 import ralseiii.skyfabric.Event.ItemTooltipEvent;
 import ralseiii.skyfabric.config.ModConfig;
 import ralseiii.skyfabric.hud.CrystalHollowsMap;
@@ -41,19 +40,16 @@ public class Skyfabric implements ClientModInitializer {
     }
 
     public static void onTick() {
-        MinecraftClient minecraftClient = MinecraftClient.getInstance();
-        if (minecraftClient == null) return;
-        tickCounter++; apiTickCounter++;
+        tickCounter++;
         if (tickCounter / 60 == 1) {
-            if (minecraftClient.world != null && !minecraftClient.isInSingleplayer()) {
-                SbChecks.checkSkyblock();
-               if (SbChecks.isCatacombs) {
-                   BlazeSolver.blazeSolver();
-                   // CreeperSolver.solve();
-               }
-            }
             tickCounter = 0;
+            if (!SbChecks.checkSkyblock()) return;
+            if (SbChecks.isCatacombs) {
+                BlazeSolver.blazeSolver();
+                // CreeperSolver.solve();
+            }
         }
+        apiTickCounter++;
         if (apiTickCounter / (5 * 60 * 20) == 1) {
             synchronized (apiThread.notify) {
                 apiThread.notify.notify();

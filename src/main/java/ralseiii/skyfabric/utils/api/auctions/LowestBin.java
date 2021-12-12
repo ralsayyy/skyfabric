@@ -16,7 +16,6 @@ public class LowestBin {
     public static void update() {
         try {
             // use skytils' api to fetch lowest bin
-            Map<String, Long> priceMap = new HashMap<>();
             URL lowestBinApi = new URL("https://whoknew.sbe-stole-skytils.design/api/auctions/lowestbins");
             HttpURLConnection connection = (HttpURLConnection) lowestBinApi.openConnection();
             connection.setRequestMethod("GET");
@@ -28,6 +27,7 @@ public class LowestBin {
                 }
                 s.close();
                 JsonObject items = new Gson().fromJson(b.toString(), JsonObject.class);
+                Map<String, Long> priceMap = new HashMap<>();
                 for (Map.Entry<String, JsonElement> entry : items.entrySet()) {
                     priceMap.put(entry.getKey(), entry.getValue().getAsLong());
                 }

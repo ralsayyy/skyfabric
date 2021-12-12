@@ -17,12 +17,12 @@ public class Bazaar {
     static AtomicReference<Map<String, Long>> bazaarBuyPriceMapReference = new AtomicReference<>();
     public static void update() {
         try {
-            Map<String, Long> bazaarBuyPriceMap = new HashMap<>();
-            Map<String, Long> bazaarSellPriceMap = new HashMap<>();
             URL bazaarApi = new URL("https://api.hypixel.net/skyblock/bazaar");
             HttpURLConnection connection = (HttpURLConnection) bazaarApi.openConnection();
             connection.setRequestMethod("GET");
             if (connection.getResponseCode() == 200) {
+                Map<String, Long> bazaarSellPriceMap = new HashMap<>();
+                Map<String, Long> bazaarBuyPriceMap = new HashMap<>();
                 Scanner s = new Scanner(connection.getInputStream());
                 StringBuilder b = new StringBuilder();
                 while (s.hasNextLine()) {

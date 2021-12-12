@@ -13,8 +13,8 @@ import net.minecraft.util.math.Matrix4f;
 import org.lwjgl.opengl.GL11;
 
 public class RenderUtils {
+    static Camera camera = BlockEntityRenderDispatcher.INSTANCE.camera;
     public static void renderSolidBox(float x, float y, float z, float width, float height, float depth, WorldRenderContext renderer, int r, int g, int b, float alpha) {
-        Camera camera = BlockEntityRenderDispatcher.INSTANCE.camera;
         RenderSystem.lineWidth(2.0f);
         RenderSystem.disableTexture();
         RenderSystem.enableBlend();

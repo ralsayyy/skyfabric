@@ -12,11 +12,11 @@ import java.util.List;
 import java.util.Locale;
 
 public class ItemTooltipEvent {
+    static NumberFormat format = NumberFormat.getInstance(Locale.US);
     public static void onItemTooltip(ItemStack item, List<Text> lines) {
         String id = ItemUtils.getItemId(item, true);
         if (id == null || id.isEmpty())
             return;
-        NumberFormat format = NumberFormat.getInstance(Locale.US);
         if (Bazaar.isBazaarItem(id)) {
             lines.add(Text.of("§lBazaar Buy:§r " + format.format(Screen.hasShiftDown() ? Bazaar.getBuyPriceForId(id) * item.getCount() : Bazaar.getBuyPriceForId(id)) + " coins"));
             lines.add(Text.of("§lBazaar Sell:§r " + format.format(Screen.hasShiftDown() ? Bazaar.getSellPriceForId(id) * item.getCount() : Bazaar.getSellPriceForId(id)) + " coins"));

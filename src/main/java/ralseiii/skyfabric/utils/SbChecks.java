@@ -27,14 +27,14 @@ public class SbChecks {
     public static Boolean isSkyblock = false;
     public static Boolean isCatacombs = false;
     public static Boolean isCrystalHollows = false;
-    public static void checkSkyblock() {
+    public static Boolean checkSkyblock() {
         List<String> list = new ArrayList<>();
         MinecraftClient client = MinecraftClient.getInstance();
-        if (client == null || client.world == null) return;
+        if (client == null || client.world == null) return false;
         Scoreboard scoreboard = client.world.getScoreboard();
-        if (scoreboard == null) return;
+        if (scoreboard == null) return false;
         ScoreboardObjective objective = scoreboard.getObjectiveForSlot(1);
-        if (objective == null) return;
+        if (objective == null) return false;
 
         Collection<ScoreboardPlayerScore> scores = scoreboard.getAllPlayerScores(objective);
         List<ScoreboardPlayerScore> listScoreboard = scores.stream()
@@ -48,7 +48,7 @@ public class SbChecks {
 
         for (ScoreboardPlayerScore score : scores) {
             Team team = scoreboard.getPlayerTeam(score.getPlayerName());
-            if (team == null) return;
+            if (team == null) return false;
             String text = team.getPrefix().getString() + team.getSuffix().getString();
             if (text.trim().length() > 0)
                 list.add(text);
@@ -101,6 +101,6 @@ public class SbChecks {
                 }
             }
         }*/
-
+    return true;
     }
 }
