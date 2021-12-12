@@ -20,7 +20,7 @@ import ralseiii.skyfabric.utils.SbChecks;
  * file, You can obtain one at https://mozilla.org/MPL/2.0/. */
 
 public class DungeonMap {
-    public static void registerHUD() {
+    public static void register() {
         HudRenderCallback.EVENT.register(((matrixStack, tickDelta) -> {
             if (SbChecks.isCatacombs && AutoConfig.getConfigHolder(ModConfig.class).getConfig().dungeonConfigDropdown.dungeonMapConfigDropdown.Enabled) {
                 MinecraftClient client = MinecraftClient.getInstance();

@@ -13,7 +13,7 @@ import java.util.Locale;
 
 public class ItemTooltipEvent {
     public static void onItemTooltip(ItemStack item, List<Text> lines) {
-        String id = ItemUtils.getItemId(item);
+        String id = ItemUtils.getItemId(item, true);
         if (id == null || id.isEmpty())
             return;
         NumberFormat format = NumberFormat.getInstance(Locale.US);

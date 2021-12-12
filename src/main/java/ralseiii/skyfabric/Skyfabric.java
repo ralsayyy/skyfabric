@@ -10,10 +10,8 @@ import net.fabricmc.fabric.api.client.item.v1.ItemTooltipCallback;
 import net.minecraft.client.MinecraftClient;
 import ralseiii.skyfabric.Event.ItemTooltipEvent;
 import ralseiii.skyfabric.config.ModConfig;
-import ralseiii.skyfabric.hud.dungeon.DungeonMainHUD;
 import ralseiii.skyfabric.hud.dungeon.DungeonMap;
 import ralseiii.skyfabric.solvers.dungeon.chat.ThreeWeirdos;
-import ralseiii.skyfabric.solvers.dungeon.entity.CreeperSolver;
 import ralseiii.skyfabric.solvers.dwarven.PuzzlerSolver;
 import ralseiii.skyfabric.utils.SbChecks;
 import ralseiii.skyfabric.solvers.dungeon.entity.BlazeSolver;
@@ -33,8 +31,8 @@ public class Skyfabric implements ClientModInitializer {
     public void onInitializeClient() {
         // register config file
         AutoConfig.register(ModConfig.class, GsonConfigSerializer::new);
-        // DungeonMainHUD.registerHUD();
-        DungeonMap.registerHUD();
+
+        DungeonMap.register();
         ThreeWeirdos.register();
         PuzzlerSolver.register();
         BlazeSolver.register();
