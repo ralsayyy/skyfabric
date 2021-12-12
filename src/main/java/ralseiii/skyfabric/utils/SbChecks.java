@@ -28,13 +28,13 @@ public class SbChecks {
     public static Boolean isCatacombs = false;
     public static Boolean isCrystalHollows = false;
     public static Boolean checkSkyblock() {
-        List<String> list = new ArrayList<>();
         MinecraftClient client = MinecraftClient.getInstance();
-        if (client == null || client.world == null) return false;
+        if (client == null || client.world == null || client.isInSingleplayer()) return false;
         Scoreboard scoreboard = client.world.getScoreboard();
         if (scoreboard == null) return false;
         ScoreboardObjective objective = scoreboard.getObjectiveForSlot(1);
         if (objective == null) return false;
+        List<String> list = new ArrayList<>();
 
         Collection<ScoreboardPlayerScore> scores = scoreboard.getAllPlayerScores(objective);
         List<ScoreboardPlayerScore> listScoreboard = scores.stream()
