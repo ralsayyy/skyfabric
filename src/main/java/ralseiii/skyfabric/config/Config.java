@@ -8,7 +8,6 @@ import me.shedaniel.autoconfig.annotation.ConfigEntry;
  * file, You can obtain one at https://mozilla.org/MPL/2.0/. */
 
 public class Config {
-
     public static class DungeonSolverConfigDropdown {
         public Boolean Trivia = true;
         public Boolean Three_Weirdos = true;
@@ -51,8 +50,10 @@ public class Config {
         @ConfigEntry.Gui.CollapsibleObject
         public DwarvenSolverConfigDropdown dwarvenSolverConfigDropdown = new DwarvenSolverConfigDropdown();
     }
-    public static class ApiUsage {
-        public Boolean bazaarPrice;
-        public String apiKey;
+
+    public static class ItemInfo {
+        public Boolean bazaarPrice = true;
+        public Boolean lowestBin = true;
+        public Boolean sbItemId = true;
     }
 }

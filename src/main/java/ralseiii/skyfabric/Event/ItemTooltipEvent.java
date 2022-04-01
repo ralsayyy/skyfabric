@@ -8,6 +8,9 @@ import net.minecraft.client.gui.screen.Screen;
 import ralseiii.skyfabric.utils.ItemUtils;
 import ralseiii.skyfabric.utils.api.Bazaar;
 import ralseiii.skyfabric.utils.api.auctions.LowestBin;
+import ralseiii.skyfabric.config.ModConfig;
+
+import me.shedaniel.autoconfig.AutoConfig;
 
 import java.text.NumberFormat;
 import java.util.List;
@@ -20,13 +23,13 @@ public class ItemTooltipEvent {
 
         if (id == null || id.isEmpty())
             return;
-        if (Bazaar.isBazaarItem(id)) {
+        if (Bazaar.isBazaarItem(id) && AutoConfig.getConfigHolder(ModConfig.class).getConfig().itemInfo.bazaarPrice) {
             lines.add(Text.of("§lBazaar Buy:§r " + format.format(Screen.hasShiftDown() ? Bazaar.getBuyPriceForId(id) * item.getCount() : Bazaar.getBuyPriceForId(id)) + " coins"));
             lines.add(Text.of("§lBazaar Sell:§r " + format.format(Screen.hasShiftDown() ? Bazaar.getSellPriceForId(id) * item.getCount() : Bazaar.getSellPriceForId(id)) + " coins"));
         }
-        if (LowestBin.isAvailable(id)) {
+        if (LowestBin.isAvailable(id) && AutoConfig.getConfigHolder(ModConfig.class).getConfig().itemInfo.lowestBin) {
             lines.add(Text.of("§lLowest BIN:§r " + format.format(LowestBin.get(id)) + " coins"));
         }
-        lines.add(Text.of("§7sb:" + ItemUtils.getItemId(item, false)));
+        if (AutoConfig.getConfigHolder(ModConfig.class).getConfig().itemInfo.sbItemId) lines.add(Text.of("§7sb:" + ItemUtils.getItemId(item, false)));
     }
 }

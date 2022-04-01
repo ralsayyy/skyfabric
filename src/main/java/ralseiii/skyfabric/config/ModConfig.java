@@ -13,4 +13,6 @@ public class ModConfig implements ConfigData {
     public Config.SolverConfigDropdown solverConfigDropdown = new Config.SolverConfigDropdown();
     @ConfigEntry.Gui.CollapsibleObject
     public Config.DungeonConfigDropdown dungeonConfigDropdown = new Config.DungeonConfigDropdown();
+    @ConfigEntry.Gui.CollapsibleObject
+    public Config.ItemInfo itemInfo = new Config.ItemInfo();
 }
