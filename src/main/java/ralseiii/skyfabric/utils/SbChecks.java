@@ -74,6 +74,8 @@ public class SbChecks {
                     scoreboardString.contains("Fairy Grotto") ||
                     scoreboardString.contains("Dragon's Lair"))
                     isCrystalHollows = true;
+                else
+                    isCrystalHollows = false;
                 if (!isCatacombs)
                     ThreeWeirdos.renderOverlay = false;
             } else {

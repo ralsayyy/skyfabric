@@ -1,11 +1,13 @@
 package ralseiii.skyfabric.utils;
-
+/* This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at https://mozilla.org/MPL/2.0/. */
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.ListTag;
+import net.minecraft.nbt.NbtList;
 
 import java.util.List;
 import java.util.Locale;
@@ -14,9 +16,9 @@ import java.util.Set;
 
 public class ItemUtils {
     public static int i;
-    public static CompoundTag getExtraAttributes(ItemStack item) {
+    public static NbtCompound getExtraAttributes(ItemStack item) {
         if (item != null) {
-            return item.getSubTag("ExtraAttributes");
+            return item.getSubNbt("ExtraAttributes");
         } else
             return null;
     }
@@ -24,7 +26,7 @@ public class ItemUtils {
         return getItemId(item, false);
     }
     public static String getItemId(ItemStack item, Boolean skytils) {
-        CompoundTag tag = getExtraAttributes(item);
+        NbtCompound tag = getExtraAttributes(item);
         if (tag != null && tag.contains("id")) {
             String id = tag.getString("id");
             if (skytils) {

@@ -1,5 +1,7 @@
 package ralseiii.skyfabric.utils.api.auctions;
-
+/* This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at https://mozilla.org/MPL/2.0/. */
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
@@ -16,7 +18,7 @@ public class LowestBin {
     public static void update() {
         try {
             // use skytils' api to fetch lowest bin
-            URL lowestBinApi = new URL("https://whoknew.sbe-stole-skytils.design/api/auctions/lowestbins");
+            URL lowestBinApi = new URL("https://api.skytils.gg/api/auctions/lowestbins");
             HttpURLConnection connection = (HttpURLConnection) lowestBinApi.openConnection();
             connection.setRequestMethod("GET");
             if (connection.getResponseCode() == 200) {
@@ -40,10 +42,12 @@ public class LowestBin {
     }
 
     public static Long get(String id) {
+        if (priceMapReference.get() == null) return 0L;
         return priceMapReference.get().getOrDefault(id, 0L);
     }
 
     public static Boolean isAvailable(String id) {
+        if (priceMapReference.get() == null) return false;
         return priceMapReference.get().containsKey(id);
     }
 }

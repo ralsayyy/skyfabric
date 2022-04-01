@@ -5,16 +5,17 @@ package ralseiii.skyfabric.utils;
  * file, You can obtain one at https://mozilla.org/MPL/2.0/. */
 
 import com.mojang.blaze3d.systems.RenderSystem;
+
 import net.fabricmc.fabric.api.client.rendering.v1.WorldRenderContext;
 import net.minecraft.client.render.*;
 import net.minecraft.client.render.block.entity.BlockEntityRenderDispatcher;
+import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.math.Matrix4f;
-import org.lwjgl.opengl.GL11;
 
 public class RenderUtils {
-    static Camera camera = BlockEntityRenderDispatcher.INSTANCE.camera;
     public static void renderSolidBox(float x, float y, float z, float width, float height, float depth, WorldRenderContext renderer, int r, int g, int b, float alpha) {
+        Camera camera = renderer.camera();
         RenderSystem.lineWidth(2.0f);
         RenderSystem.disableTexture();
         RenderSystem.enableBlend();
@@ -22,7 +23,7 @@ public class RenderUtils {
         Vec3d camPos = camera.getPos();
         renderer.matrixStack().push();
         renderer.matrixStack().translate(-camPos.x, -camPos.y, -camPos.z);
-        Matrix4f model = renderer.matrixStack().peek().getModel();
+        Matrix4f model = renderer.matrixStack().peek().getPositionMatrix();
 
         float maxX = x + width;
         float maxY = y + height;
@@ -34,7 +35,7 @@ public class RenderUtils {
         float realRed = ((float) r)/ 255;
         float realBlue = ((float) b)/ 255;
 
-        bufferBuilder.begin(GL11.GL_QUADS, VertexFormats.POSITION_COLOR);
+        bufferBuilder.begin(VertexFormat.DrawMode.QUADS, VertexFormats.POSITION_COLOR);
 
         bufferBuilder.vertex(model, x, y, z).color(realRed, realGreen, realBlue, alpha).next();
         bufferBuilder.vertex(model, maxX, y, z).color(realRed, realGreen, realBlue, alpha).next();
@@ -72,7 +73,7 @@ public class RenderUtils {
     }
 
     public static void renderSolidLine(float x, float y, float z, float endX, float endY, float endZ, WorldRenderContext renderer, int r, int g, int b, float alpha) {
-        Camera camera = BlockEntityRenderDispatcher.INSTANCE.camera;
+        Camera camera = renderer.camera();
         RenderSystem.disableTexture();
         RenderSystem.lineWidth(2.0f);
         RenderSystem.enableBlend();
@@ -80,7 +81,7 @@ public class RenderUtils {
         Vec3d camPos = camera.getPos();
         renderer.matrixStack().push();
         renderer.matrixStack().translate(-camPos.x, -camPos.y, -camPos.z);
-        Matrix4f model = renderer.matrixStack().peek().getModel();
+        Matrix4f model = renderer.matrixStack().peek().getPositionMatrix();
 
         Tessellator tessellator = Tessellator.getInstance();
         BufferBuilder bufferBuilder = tessellator.getBuffer();
@@ -88,7 +89,7 @@ public class RenderUtils {
         float realRed = ((float) r)/ 255;
         float realBlue = ((float) b)/ 255;
 
-        bufferBuilder.begin(GL11.GL_QUADS, VertexFormats.POSITION_COLOR);
+        bufferBuilder.begin(VertexFormat.DrawMode.QUADS, VertexFormats.POSITION_COLOR);
 
         bufferBuilder.vertex(model, x, y, z).color(realRed, realGreen, realBlue, alpha).next();
         bufferBuilder.vertex(model, x, y + 0.1f, z).color(realRed, realGreen, realBlue, alpha).next();
