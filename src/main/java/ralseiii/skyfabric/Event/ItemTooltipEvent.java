@@ -17,6 +17,7 @@ public class ItemTooltipEvent {
     static NumberFormat format = NumberFormat.getInstance(Locale.US);
     public static void onItemTooltip(ItemStack item, List<Text> lines) {
         String id = ItemUtils.getItemId(item, true);
+
         if (id == null || id.isEmpty())
             return;
         if (Bazaar.isBazaarItem(id)) {
@@ -26,5 +27,6 @@ public class ItemTooltipEvent {
         if (LowestBin.isAvailable(id)) {
             lines.add(Text.of("§lLowest BIN:§r " + format.format(LowestBin.get(id)) + " coins"));
         }
+        lines.add(Text.of("§7sb:" + ItemUtils.getItemId(item, false)));
     }
 }
