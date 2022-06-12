@@ -26,22 +26,32 @@ class BlazeInfo implements Comparable<BlazeInfo> {
 }
 
 public class BlazeSolver {
+    static Boolean isHigher = false;
     static List<BlazeInfo> blazeList = new LinkedList<>();
     public static void register() {
         WorldRenderEvents.END.register((context) -> {
             if (SbChecks.isCatacombs && blazeList.size() != 0) {
-                BlazeInfo lowestBlaze = blazeList.get(0);
-                BlazeInfo highestBlaze = blazeList.get(blazeList.size() - 1);
-                RenderUtils.renderSolidBox((float) lowestBlaze.pos.x - 0.5f, (float) lowestBlaze.pos.y, (float) lowestBlaze.pos.z - 0.5f, 1, 2, 1, context, 0, 255, 0, 0.7f);
-                RenderUtils.renderSolidBox((float) highestBlaze.pos.x - 0.5f, (float) highestBlaze.pos.y, (float) highestBlaze.pos.z - 0.5f, 1, 2, 1, context, 255, 0, 0, 0.7f);
+                BlazeInfo blaze;
+                BlazeInfo blaze2;
+                if (isHigher) {
+                    blaze = blazeList.get(0);
+                    blaze2 = blazeList.get(blazeList.size() - 1);
+                } else {
+                    blaze = blazeList.get(blazeList.size() - 1);
+                    blaze2 = blazeList.get(0);
+                }
+
+                RenderUtils.drawBox((float) blaze.pos.x - 0.5f, (float) blaze.pos.y, (float) blaze.pos.z - 0.5f, 1, 2, 1, context, 0, 255, 0, 0.7f);
+                RenderUtils.drawBox((float) blaze2.pos.x - 0.5f, (float) blaze2.pos.y, (float) blaze2.pos.z - 0.5f, 1, 2, 1, context, 255, 0, 0, 0.7f);
+
             }
         });
     }
     public static void blazeSolver() {
-        MinecraftClient minecraftClient = MinecraftClient.getInstance();
+        MinecraftClient client = MinecraftClient.getInstance();
+        if (client == null || client.world == null || client.player == null) return;
         blazeList.clear();
-        if (minecraftClient == null || minecraftClient.world == null || minecraftClient.player == null) return;
-        minecraftClient.world.getEntitiesByClass(ArmorStandEntity.class, minecraftClient.player.getBoundingBox().expand(20, 70, 20), entity -> {
+        client.world.getEntitiesByClass(ArmorStandEntity.class, client.player.getBoundingBox().expand(20, 70, 20), entity -> {
             return entity.hasCustomName() && entity.getCustomName().getString().contains("Blaze");
         }).forEach(entity -> {
             String name = entity.getCustomName().getString();
@@ -54,6 +64,20 @@ public class BlazeSolver {
                 System.out.println("blaze number format invalid");
             }
         });
+
+        if (blazeList.isEmpty()) return;
         Collections.sort(blazeList);
+
+        // decide whether to highlight the highest or lowest blaze
+        List<Position> pList = new LinkedList<>();
+        for (BlazeInfo b : blazeList) {
+            pList.add(b.pos);
+        }
+        Collections.sort(pList);
+        isHigher = !(pList.get(pList.size() - 1).y == 112);
+        if (isHigher) {
+            System.out.println("higher");
+        }
+
     }
 }

@@ -2,7 +2,7 @@ package ralseiii.skyfabric.utils;
 /* This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at https://mozilla.org/MPL/2.0/. */
-public class Position {
+public class Position implements Comparable<Position> {
     public double x;
     public double y;
     public double z;
@@ -15,5 +15,10 @@ public class Position {
         x = pos.x;
         y = pos.y;
         z = pos.z;
+    }
+
+    @Override
+    public int compareTo(Position p) {
+        return new Double(y).compareTo(new Double(p.y));
     }
 }

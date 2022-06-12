@@ -18,7 +18,7 @@ public class ThreeWeirdos {
     public static void register() {
         WorldRenderEvents.END.register((context) -> {
             if (ThreeWeirdos.renderOverlay)
-                RenderUtils.renderSolidBox((float) chestX, 69, (float) chestZ, 1, 1, 1, context, 0, 255, 0, 0.5f);
+                RenderUtils.drawBox((float) chestX, 69, (float) chestZ, 1, 1, 1, context, 0, 255, 0, 0.5f);
         });
     }
     public static Boolean threeWeirdosSolver(String message) {
