@@ -1,14 +1,11 @@
 package ralseiii.skyfabric.config;
 
-import me.shedaniel.autoconfig.ConfigData;
-import me.shedaniel.autoconfig.annotation.ConfigEntry;
-
 /* This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at https://mozilla.org/MPL/2.0/. */
 
 public class Config {
-    public static class DungeonSolverConfigDropdown {
+ /*   public static class DungeonSolverConfigDropdown {
         public Boolean Trivia = true;
         public Boolean Three_Weirdos = true;
         public Boolean HigherSolver = true;
@@ -55,5 +52,5 @@ public class Config {
         public Boolean bazaarPrice = true;
         public Boolean lowestBin = true;
         public Boolean sbItemId = true;
-    }
+    }*/
 }
