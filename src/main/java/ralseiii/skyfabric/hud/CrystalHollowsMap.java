@@ -28,10 +28,11 @@ public class CrystalHollowsMap {
                 MinecraftClient client = MinecraftClient.getInstance();
                 if (client != null && client.player != null && client.options != null && !client.options.debugEnabled && /* AutoConfig.getConfigHolder(ModConfig.class).getConfig().dungeonConfigDropdown.dungeonMapConfigDropdown.Enabled*/ true) {
                     Identifier arrowId = new Identifier("skyfabric:textures/ui/arrow.png");
-                    matrixStack.push();
                     Identifier identifier = new Identifier("skyfabric:textures/ui/ch.png");
+                    Tessellator tessellator = Tessellator.getInstance();
+                    matrixStack.push();
                     matrixStack.scale(1f, 1f, 1f);
-                    client.getTextureManager().bindTexture(identifier);
+                    RenderSystem.setShaderTexture(0, identifier);
                     DrawableHelper.drawTexture(matrixStack, 0, 0, 0, 0, 125, 125, 125, 125);
                     matrixStack.pop();
                     matrixStack.push();
@@ -43,7 +44,7 @@ public class CrystalHollowsMap {
                     matrixStack.scale(1.5f, 1.5f, 1.5f);
                     matrixStack.translate(-0.125, 0.125f, 0.0f);
                     client.getTextureManager().bindTexture(arrowId);
-                    Tessellator tessellator = Tessellator.getInstance();
+                    RenderSystem.setShaderTexture(0, arrowId);
                     BufferBuilder bufferBuilder = tessellator.getBuffer();
                     Matrix4f model = matrixStack.peek().getPositionMatrix();
                     RenderSystem.enableTexture();
