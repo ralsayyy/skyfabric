@@ -28,7 +28,7 @@ public class Bazaar {
                 Scanner s = new Scanner(connection.getInputStream());
                 StringBuilder b = new StringBuilder();
                 while (s.hasNextLine()) {
-                    b.append(s.nextLine() + "\n");
+                    b.append(s.nextLine()).append("\n");
                 }
                 s.close();
                 JsonObject products = (new Gson().fromJson(b.toString(), JsonObject.class)).getAsJsonObject("products");

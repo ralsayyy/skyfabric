@@ -4,8 +4,8 @@ package ralseiii.skyfabric;
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at https://mozilla.org/MPL/2.0/. */
 
-import me.shedaniel.autoconfig.AutoConfig;
-import me.shedaniel.autoconfig.serializer.GsonConfigSerializer;
+/*import me.shedaniel.autoconfig.AutoConfig;
+import me.shedaniel.autoconfig.serializer.GsonConfigSerializer;*/
 import net.fabricmc.fabric.api.client.item.v1.ItemTooltipCallback;
 import ralseiii.skyfabric.Event.ItemTooltipEvent;
 import ralseiii.skyfabric.config.ModConfig;
@@ -28,7 +28,7 @@ public class Skyfabric implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
         // register config file
-        AutoConfig.register(ModConfig.class, GsonConfigSerializer::new);
+        // AutoConfig.register(ModConfig.class, GsonConfigSerializer::new);
         DungeonMap.register();
         CrystalHollowsMap.register();
         ThreeWeirdos.register();

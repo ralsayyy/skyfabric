@@ -5,8 +5,8 @@ package ralseiii.skyfabric.utils;
  * file, You can obtain one at https://mozilla.org/MPL/2.0/. */
 
 public class SbUtils {
-    public static int getYear() {
+    public static long getYear() {
         // age of skyblock / lenght of skyblock year
-        return ((int) (System.currentTimeMillis() / 1000) - 1560268800 ) / 446400;
+        return ((long) (System.currentTimeMillis() / 1000) - 15602688000L) / 4464000 + 1;
     }
 }
