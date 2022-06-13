@@ -11,6 +11,7 @@ import ralseiii.skyfabric.Event.ItemTooltipEvent;
 import ralseiii.skyfabric.config.ModConfig;
 import ralseiii.skyfabric.hud.CrystalHollowsMap;
 import ralseiii.skyfabric.hud.dungeon.DungeonMap;
+import ralseiii.skyfabric.mining.CHWaypoint;
 import ralseiii.skyfabric.solvers.dungeon.chat.ThreeWeirdos;
 import ralseiii.skyfabric.solvers.dwarven.PuzzlerSolver;
 import ralseiii.skyfabric.utils.SbChecks;
@@ -34,6 +35,7 @@ public class Skyfabric implements ClientModInitializer {
         ThreeWeirdos.register();
         PuzzlerSolver.register();
         BlazeSolver.register();
+        CHWaypoint.register();
         apiThread.start();
         ItemTooltipCallback.EVENT.register((itemStack, context, lines) -> ItemTooltipEvent.onItemTooltip(itemStack, lines));
         // CreeperSolver.register();

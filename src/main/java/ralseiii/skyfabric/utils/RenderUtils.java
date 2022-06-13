@@ -10,14 +10,25 @@ import net.fabricmc.fabric.api.client.rendering.v1.WorldRenderContext;
 import net.minecraft.client.render.*;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.math.Matrix4f;
+import ralseiii.skyfabric.utils.Position;
 
 public class RenderUtils {
+    public static void drawBox(Position pos, WorldRenderContext renderer, int r, int g, int b, float alpha, boolean depthTest) {
+        drawBox((float) pos.x, (float) pos.y, (float) pos.z, 1, 1, 1, renderer, r, g, b, alpha, depthTest);
+    }
+    public static void drawBox(Position pos, ObjectSize size, WorldRenderContext renderer, int r, int g, int b, float alpha, boolean depthTest) {
+        drawBox((float) pos.x, (float) pos.y, (float) pos.z, size.width, size.height, size.depth, renderer, r, g, b, alpha, depthTest);
+    }
+
     public static void drawBox(float x, float y, float z, float width, float height, float depth, WorldRenderContext renderer, int r, int g, int b, float alpha) {
+        drawBox(x,y,z,width,height,depth,renderer,r,g,b,alpha,true);
+    }
+    public static void drawBox(float x, float y, float z, float width, float height, float depth, WorldRenderContext renderer, int r, int g, int b, float alpha, boolean depthTest) {
         Camera camera = renderer.camera();
         RenderSystem.lineWidth(2.0f);
         RenderSystem.disableTexture();
         RenderSystem.enableBlend();
-        RenderSystem.enableDepthTest();
+        if (depthTest) RenderSystem.enableDepthTest(); else RenderSystem.disableDepthTest();
         Vec3d camPos = camera.getPos();
         renderer.matrixStack().push();
         renderer.matrixStack().translate(-camPos.x, -camPos.y, -camPos.z);
@@ -66,6 +77,7 @@ public class RenderUtils {
         bufferBuilder.vertex(model, x, maxY, z).color(realRed, realGreen, realBlue, alpha).next();
         tessellator.draw();
         RenderSystem.enableTexture();
+        if (!depthTest) RenderSystem.enableDepthTest();
         RenderSystem.disableBlend();
         renderer.matrixStack().pop();
     }
@@ -98,4 +110,5 @@ public class RenderUtils {
         RenderSystem.disableBlend();
         renderer.matrixStack().pop();
     }
+
 }
