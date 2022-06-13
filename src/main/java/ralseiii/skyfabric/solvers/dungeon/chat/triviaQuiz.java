@@ -17,7 +17,6 @@ class TriviaQuestion {
 
 public class triviaQuiz {
     public static String question;
-
     public static String answerA;
     public static String answerB;
     public static String answerC;
@@ -37,7 +36,7 @@ public class triviaQuiz {
                 new TriviaQuestion("How many Fairy Souls are there in Spider's Den?", new String[]{"19 Fairy Souls"}),
                 new TriviaQuestion("How many Fairy Souls are there in The End?", new String[]{"12 Fairy Souls"}),
                 new TriviaQuestion("How many Fairy Souls are there in The Farming Islands?", new String[]{"20 Fairy Souls"}),
-                new TriviaQuestion("How many Fairy Souls are there in Blazing Fortress?", new String[]{"19 Fairy Souls"}),
+                new TriviaQuestion("How many Fairy Souls are there in Crimson Isle?", new String[]{"29 Fairy Souls"}),
                 new TriviaQuestion("How many Fairy Souls are there in The Park?", new String[]{"11 Fairy Souls"}),
                 new TriviaQuestion("How many Fairy Souls are there in Jerry's Workshop?", new String[]{"5 Fairy Souls"}),
                 new TriviaQuestion("How many Fairy Souls are there in Hub?", new String[]{"79 Fairy Souls"}),
@@ -51,7 +50,7 @@ public class triviaQuiz {
                 new TriviaQuestion("What is the name of the person that upgrades pets?", new String[]{"Kat"}),
                 new TriviaQuestion("What is the name of the lady of the Nether?", new String[]{"Elle"}),
                 new TriviaQuestion("Which villager in the Village gives you a Rogue Sword?", new String[]{"Jamie"}),
-                new TriviaQuestion("How many unique minions are there?", new String[]{"54 Minions"}),
+                new TriviaQuestion("How many unique minions are there?", new String[]{"58 Minions"}),
                 new TriviaQuestion("Which of these enemies does not spawn in the Spider's Den?", new String[]{
                         "Zombie Spider",
                         "Cave Spider",
