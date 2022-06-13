@@ -20,15 +20,13 @@ import ralseiii.skyfabric.utils.Position;
 import ralseiii.skyfabric.utils.SbChecks;
 
 public class CrystalHollowsMap {
-    // public static Identifier identifier = new Identifier("skyfabric:textures/ui/ch.png");
-    // public static Identifier arrowId = new Identifier("skyfabric:textures/ui/arrow.png");
+    public static Identifier identifier = new Identifier("skyfabric:textures/ui/ch.png");
+    public static Identifier arrowId = new Identifier("skyfabric:textures/ui/arrow.png");
     public static void register() {
         HudRenderCallback.EVENT.register(((matrixStack, tickDelta) -> {
             if (SbChecks.isCrystalHollows) {
                 MinecraftClient client = MinecraftClient.getInstance();
                 if (client != null && client.player != null && client.options != null && !client.options.debugEnabled && /* AutoConfig.getConfigHolder(ModConfig.class).getConfig().dungeonConfigDropdown.dungeonMapConfigDropdown.Enabled*/ true) {
-                    Identifier arrowId = new Identifier("skyfabric:textures/ui/arrow.png");
-                    Identifier identifier = new Identifier("skyfabric:textures/ui/ch.png");
                     Tessellator tessellator = Tessellator.getInstance();
                     matrixStack.push();
                     matrixStack.scale(1f, 1f, 1f);
