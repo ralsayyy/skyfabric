@@ -1,5 +1,5 @@
 {
-  // Source of locations: https://hypixel-skyblock.fandom.com/wiki/Fairy_Souls
+  "comment": "Source of locations: https://hypixel-skyblock.fandom.com/wiki/Fairy_Souls",
   "hub": [
       [-80, 70, -87],
       [72, 70, -97],
