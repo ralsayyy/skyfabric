@@ -70,9 +70,6 @@ public class SbChecks {
             for (var entry : playerListEntryList) {
                 var playerNameTextSiblingList = ((PlayerHudAccessor) client.inGameHud.getPlayerListHud()).invokeGetPlayerName(entry).getSiblings();
                 if (playerNameTextSiblingList != null && !playerNameTextSiblingList.isEmpty()) {
-                    areaString = playerNameTextSiblingList.get(0).getString();
-                    System.out.println(playerNameTextSiblingList);
-                    System.out.println(playerNameTextSiblingList.get(0).getString().contains("Area:"));
                     if (playerNameTextSiblingList.get(0).getString().contains("Area: ")) {
                         areaString = playerNameTextSiblingList.get(1).getString();
                         if (areaString.contains("Dwarven Mines")) currentArea = SbAreas.DWARVEN_MINES;
@@ -83,11 +80,8 @@ public class SbChecks {
             }
         }
 
-        System.out.println(areaString);
-
         if (currentArea != SbAreas.DUNGEON) ThreeWeirdos.renderOverlay = false;
-        System.out.println(currentArea);
 
-      return true;
+        return true;
     }
 }
