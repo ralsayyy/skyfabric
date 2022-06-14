@@ -24,6 +24,7 @@ public class MiningQuestHud {
             "Automaton Slayer",
             "Team Treasurite Member Slayer",
             "Sludge Slayer",
+            "Goblin Slayer",
             "Boss Corleone Slayer",
             "Star Sentry Puncher",
             "2x Mithril Powder Collector",
