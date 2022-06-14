@@ -5,6 +5,8 @@ package ralseiii.skyfabric.utils.api.auctions;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import org.jetbrains.annotations.NotNull;
+
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -41,12 +43,12 @@ public class LowestBin {
         }
     }
 
-    public static Long get(String id) {
+    public static long get(String id) {
         if (priceMapReference.get() == null) return 0L;
         return priceMapReference.get().getOrDefault(id, 0L);
     }
 
-    public static Boolean isAvailable(String id) {
+    public static boolean isAvailable(String id) {
         if (priceMapReference.get() == null) return false;
         return priceMapReference.get().containsKey(id);
     }

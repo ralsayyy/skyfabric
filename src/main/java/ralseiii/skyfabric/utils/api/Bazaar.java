@@ -3,7 +3,6 @@ package ralseiii.skyfabric.utils.api;
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at https://mozilla.org/MPL/2.0/. */
 import com.google.gson.Gson;
-import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
 import java.io.IOException;
@@ -47,13 +46,14 @@ public class Bazaar {
             e.printStackTrace();
         }
     }
-    public static Long getSellPriceForId(String id) {
+    public static long getSellPrice(String id) {
             return bazaarSellPriceMapReference.get().getOrDefault(id, 0L);
     }
-    public static Long getBuyPriceForId(String id) {
+
+    public static long getBuyPrice(String id) {
             return bazaarBuyPriceMapReference.get().getOrDefault(id, 0L);
     }
-    public static Boolean isBazaarItem(String id) {
+    public static boolean isBazaarItem(String id) {
        return bazaarSellPriceMapReference.get().containsKey(id);
     }
 }
