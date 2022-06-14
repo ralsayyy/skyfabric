@@ -50,11 +50,7 @@ public class SbChecks {
         list.add(objective.getDisplayName().getString());
         Collections.reverse(list);
         if (list.get(list.size() - 1).equals("www.hypixel.net")) {
-            if (list.get(0).contains("SKYBLOCK")) {
-                isSkyblock = true;
-            } else {
-                isSkyblock = false;
-            }
+            isSkyblock = list.get(0).contains("SKYBLOCK");
         }
 
         var areaString = "";
@@ -63,11 +59,13 @@ public class SbChecks {
             for (var entry : playerListEntryList) {
                 var playerNameTextSiblingList = ((PlayerHudAccessor) client.inGameHud.getPlayerListHud()).invokeGetPlayerName(entry).getSiblings();
                 if (playerNameTextSiblingList != null && !playerNameTextSiblingList.isEmpty()) {
-                    if (playerNameTextSiblingList.get(0).getString().contains("Area: ")) {
+                    var firstPart = playerNameTextSiblingList.get(0).getString();
+                    if (firstPart.contains("Area: ") || firstPart.contains("Dungeon: ")) {
                         areaString = playerNameTextSiblingList.get(1).getString();
                         if (areaString.contains("Dwarven Mines")) currentArea = SbAreas.DWARVEN_MINES;
                         else if (areaString.contains("Crystal Hollows")) currentArea = SbAreas.CRYSTAL_HOLLOWS;
-                        else if (currentArea != SbAreas.DUNGEON) currentArea = SbAreas.OTHER;
+                        else if (areaString.contains("Catacombs")) currentArea = SbAreas.DUNGEON;
+                        else currentArea = SbAreas.OTHER;
                     }
                 }
             }
