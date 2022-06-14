@@ -23,8 +23,10 @@ public class CHWaypoint {
         WorldRenderEvents.END.register((ctx) -> {
             if (SbChecks.currentArea == SbAreas.CRYSTAL_HOLLOWS) {
                 for (var p : waypointList) {
-                    if (MinecraftClient.getInstance().player.getPos().distanceTo(new Vec3d(p.x, p.y, p.z)) > 15)
+                    var client = MinecraftClient.getInstance();
+                    if (client.player.getPos().distanceTo(new Vec3d(p.x, p.y, p.z)) > 15) {
                         RenderUtils.drawBox(p, s, ctx, 0, 255, 0, 0.5f, false);
+                    }
                 }
             }
         });

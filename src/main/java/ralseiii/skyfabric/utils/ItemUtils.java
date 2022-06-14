@@ -15,7 +15,6 @@ import java.util.Map;
 import java.util.Set;
 
 public class ItemUtils {
-    public static int i;
     public static NbtCompound getExtraAttributes(ItemStack item) {
         if (item != null) {
             return item.getSubNbt("ExtraAttributes");

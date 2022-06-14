@@ -6,21 +6,14 @@ package ralseiii.skyfabric.utils;
 
 import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;
-import com.google.common.collect.Ordering;
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.network.AbstractClientPlayerEntity;
-import net.minecraft.client.network.PlayerListEntry;
-import net.minecraft.scoreboard.Scoreboard;
-import net.minecraft.scoreboard.ScoreboardObjective;
 import net.minecraft.scoreboard.ScoreboardPlayerScore;
-import net.minecraft.scoreboard.Team;
-import net.minecraft.client.gui.hud.PlayerListHud;
-import net.minecraft.text.Text;
 import ralseiii.skyfabric.mixin.PlayerHudAccessor;
 import ralseiii.skyfabric.solvers.dungeon.chat.ThreeWeirdos;
-import ralseiii.skyfabric.utils.SbAreas;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.stream.Collectors;
 // originally from skyblocker
 
