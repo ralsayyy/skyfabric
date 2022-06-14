@@ -6,10 +6,10 @@ public class Position implements Comparable<Position> {
     public double x;
     public double y;
     public double z;
-    public void set(double _x, double _y, double _z) {
-        x = _x;
-        y = _y;
-        z = _z;
+    public void set(double x, double y, double z) {
+        this.x = x;
+        this.y = y;
+        this.z = z;
     }
     public void set(Position pos) {
         x = pos.x;
@@ -20,5 +20,12 @@ public class Position implements Comparable<Position> {
     @Override
     public int compareTo(Position p) {
         return Double.compare(y, p.y);
+    }
+
+    public Position() {}
+    public Position(double x, double y, double z) {
+        this.x = x;
+        this.y = y;
+        this.z = z;
     }
 }
