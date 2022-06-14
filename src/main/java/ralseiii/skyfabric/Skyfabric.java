@@ -19,6 +19,7 @@ import ralseiii.skyfabric.utils.SbAreas;
 import ralseiii.skyfabric.utils.SbChecks;
 import ralseiii.skyfabric.solvers.dungeon.entity.BlazeSolver;
 import ralseiii.skyfabric.utils.api.ApiThread;
+import ralseiii.skyfabric.debug.DebugCommand;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -33,6 +34,7 @@ public class Skyfabric implements ClientModInitializer {
         // register config file
         // AutoConfig.register(ModConfig.class, GsonConfigSerializer::new);
         DungeonMap.register();
+        DebugCommand.register();
         CrystalHollowsMap.register();
         ThreeWeirdos.register();
         PuzzlerSolver.register();
