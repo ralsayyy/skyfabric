@@ -37,6 +37,7 @@ public class Skyfabric implements ClientModInitializer {
         PuzzlerSolver.register();
         BlazeSolver.register();
         CHWaypoint.register();
+        MiningQuestHud.register();
         apiThread.start();
         ItemTooltipCallback.EVENT.register((itemStack, context, lines) -> ItemTooltipEvent.onItemTooltip(itemStack, lines));
         // CreeperSolver.register();
@@ -47,7 +48,7 @@ public class Skyfabric implements ClientModInitializer {
         if (tickCounter / 60 == 1) {
             tickCounter = 0;
             if (!SbChecks.checkSkyblock()) return;
-            // MiningQuestHud.update();
+            MiningQuestHud.update();
             if (SbChecks.isCatacombs) {
                 BlazeSolver.blazeSolver();
                 // CreeperSolver.solve();
