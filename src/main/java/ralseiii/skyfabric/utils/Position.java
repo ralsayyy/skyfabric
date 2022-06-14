@@ -19,6 +19,6 @@ public class Position implements Comparable<Position> {
 
     @Override
     public int compareTo(Position p) {
-        return new Double(y).compareTo(new Double(p.y));
+        return Double.compare(y, p.y);
     }
 }
