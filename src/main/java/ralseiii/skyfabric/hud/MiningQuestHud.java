@@ -46,10 +46,12 @@ public class MiningQuestHud {
             for (var s : questList) {
                 matrixStack.push();
                 matrixStack.scale(1f, 1f, 1f);
-                tx.draw(matrixStack, s, 100, y, 0xffffff);
+                tx.draw(matrixStack, s, 0, y, 0xffffff);
                 y += 16f;
                 matrixStack.pop();
             }
+            tx.draw(matrixStack, mithrilPowderString, 0, y, 0xffffff);
+            tx.draw(matrixStack, gemstonePowderString, 0, y + 16f, 0xffffff);
         }));
     }
 
