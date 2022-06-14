@@ -34,11 +34,10 @@ public class CrystalHollowsMap {
                     matrixStack.push();
                     var x = client.player.getX();
                     var z = client.player.getZ();
-                    matrixStack.translate((Math.round(Math.max(0, Math.min(x - 200, 624)) / 4.992)), (int) Math.round(Math.max(0, Math.min(z - 204, 624)) / 4.992), 0);
+                    matrixStack.translate(Math.max(0, Math.min(x - 200, 624)) / 4.992, Math.max(0, Math.min(z - 204, 624)) / 4.992, 0);
                     matrixStack.multiply(new Quaternion(new Vec3f(0, 0, 1), client.player.getHeadYaw() + 180.0f, true));
-                    matrixStack.scale(1.5f, 1.5f, 1.5f);
+                    matrixStack.scale(0.5f, 0.5f, 0.5f);
                     matrixStack.translate(-0.125, 0.125f, 0.0f);
-                    client.getTextureManager().bindTexture(arrowId);
                     RenderSystem.setShaderTexture(0, arrowId);
                     var bufferBuilder = tessellator.getBuffer();
                     var model = matrixStack.peek().getPositionMatrix();
@@ -46,9 +45,9 @@ public class CrystalHollowsMap {
                     // why do both VertexFormat and VertexFormats exist
                     bufferBuilder.begin(VertexFormat.DrawMode.QUADS, VertexFormats.POSITION_TEXTURE);
                     bufferBuilder.vertex(model, -8, -8, 100).texture(0, 0).next();
-                    bufferBuilder.vertex(model, -8, 8, 100).texture(0, 0.5f).next();
-                    bufferBuilder.vertex(model, 8, 4, 100).texture(0.5f, 0.5f).next();
-                    bufferBuilder.vertex(model, 8, 4, 100 ).texture(0.5f, 0).next();
+                    bufferBuilder.vertex(model, -8, 8, 100).texture(0, 1f).next();
+                    bufferBuilder.vertex(model, 8, 8, 100).texture(1f, 1f).next();
+                    bufferBuilder.vertex(model, 8, -8, 100 ).texture(1f, 0).next();
                     tessellator.draw();
                     matrixStack.pop();
                 }
