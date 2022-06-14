@@ -34,10 +34,9 @@ public class CrystalHollowsMap {
                     DrawableHelper.drawTexture(matrixStack, 0, 0, 0, 0, 125, 125, 125, 125);
                     matrixStack.pop();
                     matrixStack.push();
-                    var pos = new Position();
-                    pos.x = client.player.getX();
-                    pos.z = client.player.getZ();
-                    matrixStack.translate((Math.round(Math.max(0, Math.min(pos.x - 200, 624)) / 4.992)), (int) Math.round(Math.max(0, Math.min(pos.z - 204, 624)) / 4.992), 0);
+                    var x = client.player.getX();
+                    var z = client.player.getZ();
+                    matrixStack.translate((Math.round(Math.max(0, Math.min(x - 200, 624)) / 4.992)), (int) Math.round(Math.max(0, Math.min(z - 204, 624)) / 4.992), 0);
                     matrixStack.multiply(new Quaternion(new Vec3f(0, 0, 1), client.player.getHeadYaw() + 180.0f, true));
                     matrixStack.scale(1.5f, 1.5f, 1.5f);
                     matrixStack.translate(-0.125, 0.125f, 0.0f);
