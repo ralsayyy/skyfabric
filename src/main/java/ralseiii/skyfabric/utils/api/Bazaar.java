@@ -19,24 +19,24 @@ public class Bazaar {
     static AtomicReference<Map<String, Long>> bazaarBuyPriceMapReference = new AtomicReference<>();
     public static void update() {
         try {
-            URL bazaarApi = new URL("https://api.hypixel.net/skyblock/bazaar");
-            HttpURLConnection connection = (HttpURLConnection) bazaarApi.openConnection();
+            var bazaarApi = new URL("https://api.hypixel.net/skyblock/bazaar");
+            var connection = (HttpURLConnection) bazaarApi.openConnection();
             connection.setRequestMethod("GET");
             if (connection.getResponseCode() == 200) {
                 Map<String, Long> bazaarSellPriceMap = new HashMap<>();
                 Map<String, Long> bazaarBuyPriceMap = new HashMap<>();
-                Scanner s = new Scanner(connection.getInputStream());
-                StringBuilder b = new StringBuilder();
+                var s = new Scanner(connection.getInputStream());
+                var b = new StringBuilder();
                 while (s.hasNextLine()) {
                     b.append(s.nextLine()).append("\n");
                 }
                 s.close();
-                JsonObject products = (new Gson().fromJson(b.toString(), JsonObject.class)).getAsJsonObject("products");
-                for (Map.Entry<String, JsonElement> entry : products.entrySet()) {
+                var products = (new Gson().fromJson(b.toString(), JsonObject.class)).getAsJsonObject("products");
+                for (var entry : products.entrySet()) {
                     // convert map.entry back to JsonObject
-                    JsonObject o = entry.getValue().getAsJsonObject();
-                    JsonObject productInfo = o.getAsJsonObject("quick_status");
-                    String id = productInfo.get("productId").getAsString();
+                    var o = entry.getValue().getAsJsonObject();
+                    var productInfo = o.getAsJsonObject("quick_status");
+                    var id = productInfo.get("productId").getAsString();
                     bazaarSellPriceMap.put(id, productInfo.get("sellPrice").getAsLong());
                     bazaarBuyPriceMap.put(id, productInfo.get("buyPrice").getAsLong());
                 }

@@ -10,6 +10,7 @@ import net.fabricmc.fabric.api.client.item.v1.ItemTooltipCallback;
 import ralseiii.skyfabric.Event.ItemTooltipEvent;
 import ralseiii.skyfabric.config.ModConfig;
 import ralseiii.skyfabric.hud.CrystalHollowsMap;
+import ralseiii.skyfabric.hud.MiningQuestHud;
 import ralseiii.skyfabric.hud.dungeon.DungeonMap;
 import ralseiii.skyfabric.mining.CHWaypoint;
 import ralseiii.skyfabric.solvers.dungeon.chat.ThreeWeirdos;
@@ -46,6 +47,7 @@ public class Skyfabric implements ClientModInitializer {
         if (tickCounter / 60 == 1) {
             tickCounter = 0;
             if (!SbChecks.checkSkyblock()) return;
+            // MiningQuestHud.update();
             if (SbChecks.isCatacombs) {
                 BlazeSolver.blazeSolver();
                 // CreeperSolver.solve();

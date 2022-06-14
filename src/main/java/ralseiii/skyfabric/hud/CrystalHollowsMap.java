@@ -25,16 +25,16 @@ public class CrystalHollowsMap {
     public static void register() {
         HudRenderCallback.EVENT.register(((matrixStack, tickDelta) -> {
             if (SbChecks.isCrystalHollows) {
-                MinecraftClient client = MinecraftClient.getInstance();
+                var client = MinecraftClient.getInstance();
                 if (client != null && client.player != null && client.options != null && !client.options.debugEnabled && /* AutoConfig.getConfigHolder(ModConfig.class).getConfig().dungeonConfigDropdown.dungeonMapConfigDropdown.Enabled*/ true) {
-                    Tessellator tessellator = Tessellator.getInstance();
+                    var tessellator = Tessellator.getInstance();
                     matrixStack.push();
                     matrixStack.scale(1f, 1f, 1f);
                     RenderSystem.setShaderTexture(0, identifier);
                     DrawableHelper.drawTexture(matrixStack, 0, 0, 0, 0, 125, 125, 125, 125);
                     matrixStack.pop();
                     matrixStack.push();
-                    Position pos = new Position();
+                    var pos = new Position();
                     pos.x = client.player.getX();
                     pos.z = client.player.getZ();
                     matrixStack.translate((Math.round(Math.max(0, Math.min(pos.x - 200, 624)) / 4.992)), (int) Math.round(Math.max(0, Math.min(pos.z - 204, 624)) / 4.992), 0);
@@ -43,8 +43,8 @@ public class CrystalHollowsMap {
                     matrixStack.translate(-0.125, 0.125f, 0.0f);
                     client.getTextureManager().bindTexture(arrowId);
                     RenderSystem.setShaderTexture(0, arrowId);
-                    BufferBuilder bufferBuilder = tessellator.getBuffer();
-                    Matrix4f model = matrixStack.peek().getPositionMatrix();
+                    var bufferBuilder = tessellator.getBuffer();
+                    var model = matrixStack.peek().getPositionMatrix();
                     RenderSystem.enableTexture();
                     // why do both VertexFormat and VertexFormats exist
                     bufferBuilder.begin(VertexFormat.DrawMode.QUADS, VertexFormats.POSITION_TEXTURE);

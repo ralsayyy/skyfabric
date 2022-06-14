@@ -26,17 +26,17 @@ public class CreeperSolver {
     };
 
     public static void register() {
-        WorldRenderEvents.END.register(context -> {
+        WorldRenderEvents.END.register(ctx -> {
             if (drawLines && SbChecks.isCatacombs) {
-                for (LineCoords l : lineCoords) {
+                for (var l : lineCoords) {
                     if (l.startPos.y != 0.0f)
-                        RenderUtils.renderSolidLine((float) l.startPos.x, (float) l.startPos.y, (float) l.endPos.z, (float) l.endPos.x, (float) l.endPos.y, (float) l.endPos.z, context, 255, 0, 0, 0);
+                        RenderUtils.renderSolidLine((float) l.startPos.x, (float) l.startPos.y, (float) l.endPos.z, (float) l.endPos.x, (float) l.endPos.y, (float) l.endPos.z, ctx, 255, 0, 0, 0);
                 }
             }
         });
     }
     public static void solve() {
-        MinecraftClient client = MinecraftClient.getInstance();
+        var client = MinecraftClient.getInstance();
         if (client == null || client.world == null || client.player == null) return;
         client.world.getEntitiesByClass(CreeperEntity.class, client.player.getBoundingBox().expand(20, 20, 20), entity -> {
             return !entity.isInvisible();

@@ -14,7 +14,7 @@ public class IceFillSolver {
             {1, 1, 2, 1, 3, 3, 3, 1, 2, 1, 1}, // 1st stage
     };
     public static void solve() {
-        MinecraftClient client = MinecraftClient.getInstance();
+        var client = MinecraftClient.getInstance();
         if (client == null || client.world == null) return;
         List<BlockEntityTickInvoker> blockEntityTickInvokers = ((WorldAccessor)client.world).getBlockEntityTickers();
         for (BlockEntityTickInvoker o : blockEntityTickInvokers) {

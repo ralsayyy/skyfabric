@@ -48,15 +48,15 @@ public class BlazeSolver {
         });
     }
     public static void blazeSolver() {
-        MinecraftClient client = MinecraftClient.getInstance();
+        var client = MinecraftClient.getInstance();
         if (client == null || client.world == null || client.player == null) return;
         blazeList.clear();
         client.world.getEntitiesByClass(ArmorStandEntity.class, client.player.getBoundingBox().expand(20, 70, 20), entity -> {
             return entity.hasCustomName() && entity.getCustomName().getString().contains("Blaze");
         }).forEach(entity -> {
-            String name = entity.getCustomName().getString();
+            var name = entity.getCustomName().getString();
             try {
-                BlazeInfo info = new BlazeInfo();
+                var info = new BlazeInfo();
                 info.pos.set(entity.getX(), entity.getY(), entity.getZ());
                 info.health = Integer.parseInt(name.substring(name.indexOf("e") + 3, name.indexOf("/") - 2));
                 blazeList.add(info);
@@ -70,14 +70,10 @@ public class BlazeSolver {
 
         // decide whether to highlight the highest or lowest blaze
         List<Position> pList = new LinkedList<>();
-        for (BlazeInfo b : blazeList) {
+        for (var b : blazeList) {
             pList.add(b.pos);
         }
         Collections.sort(pList);
         isHigher = !(pList.get(pList.size() - 1).y == 112);
-        if (isHigher) {
-            System.out.println("higher");
-        }
-
     }
 }

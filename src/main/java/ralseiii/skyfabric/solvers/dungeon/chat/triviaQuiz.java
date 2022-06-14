@@ -80,18 +80,18 @@ public class triviaQuiz {
                 })
         };
         TriviaLoop:
-        for (TriviaQuestion triviaQuestion : questions) {
+        for (var triviaQuestion : questions) {
             if (triviaQuestion.question.contains(question)) {
-                for (int i2 = 0; i2 < triviaQuestion.correctAnswers.length; i2++) {
-                    if (answerA.contains(triviaQuestion.correctAnswers[i2])) {
+                for (var i = 0; i < triviaQuestion.correctAnswers.length; i++) {
+                    if (answerA.contains(triviaQuestion.correctAnswers[i])) {
                         correctAnswer = "(A)";
                         break TriviaLoop;
                     }
-                    if (answerB.contains(triviaQuestion.correctAnswers[i2])) {
+                    if (answerB.contains(triviaQuestion.correctAnswers[i])) {
                         correctAnswer = "(B)";
                         break TriviaLoop;
                     }
-                    if (answerC.contains(triviaQuestion.correctAnswers[i2])) {
+                    if (answerC.contains(triviaQuestion.correctAnswers[i])) {
                         correctAnswer = "(C)";
                         break TriviaLoop;
                     }

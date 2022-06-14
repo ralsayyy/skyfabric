@@ -18,19 +18,19 @@ public class LowestBin {
     public static void update() {
         try {
             // use skytils' api to fetch lowest bin
-            URL lowestBinApi = new URL("https://api.skytils.gg/api/auctions/lowestbins");
-            HttpURLConnection connection = (HttpURLConnection) lowestBinApi.openConnection();
+            var lowestBinApi = new URL("https://api.skytils.gg/api/auctions/lowestbins");
+            var connection = (HttpURLConnection) lowestBinApi.openConnection();
             connection.setRequestMethod("GET");
             if (connection.getResponseCode() == 200) {
-                Scanner s = new Scanner(connection.getInputStream());
-                StringBuilder b = new StringBuilder();
+                var s = new Scanner(connection.getInputStream());
+                var b = new StringBuilder();
                 while (s.hasNextLine()) {
-                    b.append(s.nextLine() + "\n");
+                    b.append(s.nextLine()).append("\n");
                 }
                 s.close();
-                JsonObject items = new Gson().fromJson(b.toString(), JsonObject.class);
+                var items = new Gson().fromJson(b.toString(), JsonObject.class);
                 Map<String, Long> priceMap = new HashMap<>();
-                for (Map.Entry<String, JsonElement> entry : items.entrySet()) {
+                for (var entry : items.entrySet()) {
                     priceMap.put(entry.getKey(), entry.getValue().getAsLong());
                 }
                 priceMapReference.set(priceMap);

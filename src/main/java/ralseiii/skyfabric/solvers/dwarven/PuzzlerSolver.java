@@ -8,9 +8,9 @@ public class PuzzlerSolver {
     public static int rewardZ;
     public static boolean renderOverlay = false;
     public static void register() {
-        WorldRenderEvents.END.register((context) -> {
+        WorldRenderEvents.END.register((ctx) -> {
             if (PuzzlerSolver.renderOverlay)
-                RenderUtils.drawBox((float) rewardX, 195.01f, (float) rewardZ, 1, 1, 1, context, 0, 255, 0, 1);
+                RenderUtils.drawBox((float) rewardX, 195.01f, (float) rewardZ, 1, 1, 1, ctx, 0, 255, 0, 1);
         });
     }
 

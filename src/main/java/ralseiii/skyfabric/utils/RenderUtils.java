@@ -24,25 +24,25 @@ public class RenderUtils {
         drawBox(x,y,z,width,height,depth,renderer,r,g,b,alpha,true);
     }
     public static void drawBox(float x, float y, float z, float width, float height, float depth, WorldRenderContext renderer, int r, int g, int b, float alpha, boolean depthTest) {
-        Camera camera = renderer.camera();
+        var camera = renderer.camera();
         RenderSystem.lineWidth(2.0f);
         RenderSystem.disableTexture();
         RenderSystem.enableBlend();
         if (depthTest) RenderSystem.enableDepthTest(); else RenderSystem.disableDepthTest();
-        Vec3d camPos = camera.getPos();
+        var camPos = camera.getPos();
         renderer.matrixStack().push();
         renderer.matrixStack().translate(-camPos.x, -camPos.y, -camPos.z);
-        Matrix4f model = renderer.matrixStack().peek().getPositionMatrix();
+        var model = renderer.matrixStack().peek().getPositionMatrix();
 
-        float maxX = x + width;
-        float maxY = y + height;
-        float maxZ = z + depth;
+        var maxX = x + width;
+        var maxY = y + height;
+        var maxZ = z + depth;
 
         Tessellator tessellator = Tessellator.getInstance();
         BufferBuilder bufferBuilder = tessellator.getBuffer();
-        float realGreen = ((float) g)/ 255;
-        float realRed = ((float) r)/ 255;
-        float realBlue = ((float) b)/ 255;
+        var realGreen = ((float) g)/ 255;
+        var realRed = ((float) r)/ 255;
+        var realBlue = ((float) b)/ 255;
 
         bufferBuilder.begin(VertexFormat.DrawMode.QUADS, VertexFormats.POSITION_COLOR);
 
@@ -83,21 +83,21 @@ public class RenderUtils {
     }
 
     public static void renderSolidLine(float x, float y, float z, float endX, float endY, float endZ, WorldRenderContext renderer, int r, int g, int b, float alpha) {
-        Camera camera = renderer.camera();
+        var camera = renderer.camera();
         RenderSystem.disableTexture();
         RenderSystem.lineWidth(2.0f);
         RenderSystem.enableBlend();
         RenderSystem.enableDepthTest();
-        Vec3d camPos = camera.getPos();
+        var camPos = camera.getPos();
         renderer.matrixStack().push();
         renderer.matrixStack().translate(-camPos.x, -camPos.y, -camPos.z);
-        Matrix4f model = renderer.matrixStack().peek().getPositionMatrix();
+        var model = renderer.matrixStack().peek().getPositionMatrix();
 
-        Tessellator tessellator = Tessellator.getInstance();
-        BufferBuilder bufferBuilder = tessellator.getBuffer();
-        float realGreen = ((float) g)/ 255;
-        float realRed = ((float) r)/ 255;
-        float realBlue = ((float) b)/ 255;
+        var tessellator = Tessellator.getInstance();
+        var bufferBuilder = tessellator.getBuffer();
+        var realGreen = ((float) g)/ 255;
+        var realRed = ((float) r)/ 255;
+        var realBlue = ((float) b)/ 255;
 
         bufferBuilder.begin(VertexFormat.DrawMode.QUADS, VertexFormats.POSITION_COLOR);
 

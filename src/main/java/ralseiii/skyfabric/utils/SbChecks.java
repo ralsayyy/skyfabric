@@ -28,16 +28,16 @@ public class SbChecks {
     public static Boolean isCatacombs = false;
     public static Boolean isCrystalHollows = false;
     public static Boolean checkSkyblock() {
-        MinecraftClient client = MinecraftClient.getInstance();
+        var client = MinecraftClient.getInstance();
         if (client == null || client.world == null || client.isInSingleplayer()) return false;
-        Scoreboard scoreboard = client.world.getScoreboard();
+        var scoreboard = client.world.getScoreboard();
         if (scoreboard == null) return false;
-        ScoreboardObjective objective = scoreboard.getObjectiveForSlot(1);
+        var objective = scoreboard.getObjectiveForSlot(1);
         if (objective == null) return false;
         List<String> list = new ArrayList<>();
 
-        Collection<ScoreboardPlayerScore> scores = scoreboard.getAllPlayerScores(objective);
-        List<ScoreboardPlayerScore> listScoreboard = scores.stream()
+        var scores = scoreboard.getAllPlayerScores(objective);
+        var listScoreboard = scores.stream()
                 .filter(input -> input != null && input.getPlayerName() != null && !input.getPlayerName().startsWith("#"))
                 .collect(Collectors.toList());
         if (listScoreboard.size() > 15) {
@@ -47,18 +47,18 @@ public class SbChecks {
         }
 
         for (ScoreboardPlayerScore score : scores) {
-            Team team = scoreboard.getPlayerTeam(score.getPlayerName());
+            var team = scoreboard.getPlayerTeam(score.getPlayerName());
             if (team == null) return false;
-            String text = team.getPrefix().getString() + team.getSuffix().getString();
+            var text = team.getPrefix().getString() + team.getSuffix().getString();
             if (text.trim().length() > 0)
                 list.add(text);
         }
 
         list.add(objective.getDisplayName().getString());
         Collections.reverse(list);
-        String scoreboardString = list.toString();
+        var scoreboardString = list.toString();
         if (list.get(list.size() - 1).equals("www.hypixel.net")) {
-            if (list.get(0).toString().contains("SKYBLOCK")) {
+            if (list.get(0).contains("SKYBLOCK")) {
                 isSkyblock = true;
                 isCatacombs = scoreboardString.contains("The Catacombs");
                 if (scoreboardString.contains("Precursor Remnants") ||
@@ -95,7 +95,7 @@ public class SbChecks {
             if (playerNameTextSiblingList != null && !playerNameTextSiblingList.isEmpty()) {
                 // System.out.println(playerNameTextSiblingList.get(0));
                 ScoreboardObjective scoreboardObjective2 = scoreboard.getObjectiveForSlot(1);
-                if (playerNameTextSiblingList.get(0).getString().contains("Secrets found:") && scoreboardObjective2 != null) {
+                if (playerNameTextSiblingList.get(0).getString().contains("Area:") && scoreboardObjective2 != null) {
                     // System.out.println(playerNameTextSiblingList.get(0));
                     PlayerUtils.secretsAmount = String.valueOf(scoreboard.getPlayerScore(entry.getProfile().getName(), scoreboardObjective2).getScore());
                     System.out.println(playerNameTextSiblingList.get(0).getString()")

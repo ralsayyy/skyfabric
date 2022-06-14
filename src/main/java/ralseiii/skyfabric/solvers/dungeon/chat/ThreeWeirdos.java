@@ -16,27 +16,26 @@ public class ThreeWeirdos {
     public static double chestX = 0;
     public static double chestZ = 0;
     public static void register() {
-        WorldRenderEvents.END.register((context) -> {
+        WorldRenderEvents.END.register((ctx) -> {
             if (ThreeWeirdos.renderOverlay)
-                RenderUtils.drawBox((float) chestX, 69, (float) chestZ, 1, 1, 1, context, 0, 255, 0, 0.5f);
+                RenderUtils.drawBox((float) chestX, 69, (float) chestZ, 1, 1, 1, ctx, 0, 255, 0, 0.5f);
         });
     }
     public static Boolean threeWeirdosSolver(String message) {
 
-        boolean isCorrectAnswer = message.contains("The reward is not in my chest!") ||
+        var isCorrectAnswer = message.contains("The reward is not in my chest!") ||
                 message.contains("The reward isn't in any of our chests.") ||
                 message.contains("My chest doesn't have the reward. We are all telling the truth.") ||
                 message.contains("My chest has the reward and I'm telling the truth!") ||
                 message.contains("At least one of them is lying, and the reward is not in") ||
                 message.contains("Both of them are telling the truth. Also, ");
         if (isCorrectAnswer) {
-            MinecraftClient client = MinecraftClient.getInstance();
+            var client = MinecraftClient.getInstance();
             if (client == null || client.world == null) return false;
             client.world.getEntitiesByClass(ArmorStandEntity.class, client.player.getBoundingBox().expand(7, 0, 7), entity -> {
                 return entity.hasCustomName() && entity.getCustomName().getString().contains(message.substring(message.indexOf("]") + 4, message.indexOf(":") - 3));
             }).forEach(entity -> {
-                BlockPos npcLocation = new BlockPos(entity.getX(), 69, entity.getZ());
-                // i just looked at dsm for this
+                var npcLocation = new BlockPos(entity.getX(), 69, entity.getZ());
                 if (client.world.getBlockState(npcLocation.east()).getBlock() == Blocks.CHEST) {
                     chestX = npcLocation.east().getX();
                     chestZ = npcLocation.east().getZ();

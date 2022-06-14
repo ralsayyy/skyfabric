@@ -19,15 +19,15 @@ public class DungeonMap {
     public static void register() {
         HudRenderCallback.EVENT.register(((matrixStack, tickDelta) -> {
             if (SbChecks.isCatacombs && /* AutoConfig.getConfigHolder(ModConfig.class).getConfig().dungeonConfigDropdown.dungeonMapConfigDropdown.Enabled */ true) {
-                MinecraftClient client = MinecraftClient.getInstance();
+                var client = MinecraftClient.getInstance();
                 if (client == null || client.player == null || client.world == null) return;
-                ItemStack item = client.player.getInventory().main.get(8);
-                NbtCompound tag = item.getNbt();
+                var item = client.player.getInventory().main.get(8);
+                var tag = item.getNbt();
                 if (tag != null && tag.contains("map")) {
-                    MapState state = FilledMapItem.getMapState(FilledMapItem.getMapId(item), client.world);
+                    var state = FilledMapItem.getMapState(FilledMapItem.getMapId(item), client.world);
                     if (state == null) return;
-                    VertexConsumerProvider.Immediate verticesImmediate = client.getBufferBuilders().getEffectVertexConsumers();
-                    VertexConsumerProvider vertices = client.getBufferBuilders().getEffectVertexConsumers();
+                    var verticesImmediate = client.getBufferBuilders().getEffectVertexConsumers();
+                    var vertices = client.getBufferBuilders().getEffectVertexConsumers();
                     matrixStack.push();
                     matrixStack.scale(1, 1, 0);
                     matrixStack.translate(/* AutoConfig.getConfigHolder(ModConfig.class).getConfig().dungeonConfigDropdown.dungeonMapConfigDropdown.uiElementPosition.x */ 0, /* AutoConfig.getConfigHolder(ModConfig.class).getConfig().dungeonConfigDropdown.dungeonMapConfigDropdown.uiElementPosition.y */ 0, 0);

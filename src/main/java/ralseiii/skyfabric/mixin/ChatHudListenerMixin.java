@@ -31,12 +31,12 @@ public class ChatHudListenerMixin {
     @Inject(method = "onChatMessage", at = @At("HEAD"), cancellable = true)
     public void onMessage(MessageType type, Text message, MessageSender sender, CallbackInfo ci) {
         if (SbChecks.isSkyblock) {
-            String msg = message.getString();
+            var msg = message.getString();
             // puzzler and fetchur
             // TODO: Implement a puzzler solver
             if (msg.contains("[NPC]")) {
                 if (msg.contains("Fetchur")) {
-                    Text fetchurItemText = FetchurSolver.fetchurSolver(msg);
+                    var fetchurItemText = FetchurSolver.fetchurSolver(msg);
                     if (!fetchurItemText.getString().equals("")) {
                         client.player.sendMessage(message, false);
                         client.player.sendMessage(Text.of("§8[Skyfabric]§r: Fetchur wants §a[" + fetchurItemText.getString() + "]§r"), false);
@@ -55,9 +55,9 @@ public class ChatHudListenerMixin {
             if (SbChecks.isCatacombs) {
                 // three weirdos
                 if (msg.contains("[NPC]")) {
-                    Boolean hasReward = ThreeWeirdos.threeWeirdosSolver(msg);
+                    var hasReward = ThreeWeirdos.threeWeirdosSolver(msg);
                     if (hasReward) {
-                        String rewardChestName = msg;
+                        var rewardChestName = msg;
                         client.player.sendMessage(message, false);
                         rewardChestName = rewardChestName.substring(rewardChestName.indexOf("]") + 2);
                         rewardChestName = rewardChestName.substring(0, rewardChestName.indexOf(":"));
