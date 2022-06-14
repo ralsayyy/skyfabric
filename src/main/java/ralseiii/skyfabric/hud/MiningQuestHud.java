@@ -3,6 +3,7 @@ package ralseiii.skyfabric.hud;
 import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
 import net.minecraft.client.MinecraftClient;
 import ralseiii.skyfabric.mixin.PlayerHudAccessor;
+import ralseiii.skyfabric.utils.SbAreas;
 import ralseiii.skyfabric.utils.SbChecks;
 
 import java.util.ArrayList;
@@ -32,7 +33,7 @@ public class MiningQuestHud {
 
     public static void register() {
         HudRenderCallback.EVENT.register(((matrixStack, tickDelta) -> {
-            if (!SbChecks.isCrystalHollows) return;
+            if (SbChecks.currentArea != SbAreas.CRYSTAL_HOLLOWS && SbChecks.currentArea != SbAreas.DWARVEN_MINES) return;
             var client = MinecraftClient.getInstance();
             var tx = client.textRenderer;
             var y = 125f;
@@ -54,7 +55,7 @@ public class MiningQuestHud {
     }
 
     public static void update() {
-        if (!SbChecks.isCrystalHollows) return;
+        if (SbChecks.currentArea != SbAreas.CRYSTAL_HOLLOWS && SbChecks.currentArea != SbAreas.DWARVEN_MINES) return;
         List<String> tempQuestList = new ArrayList<>();
         var client = MinecraftClient.getInstance();
         if (client == null || client.world == null) return;

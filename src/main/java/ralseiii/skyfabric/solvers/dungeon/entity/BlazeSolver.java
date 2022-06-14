@@ -5,6 +5,7 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.entity.decoration.ArmorStandEntity;
 import ralseiii.skyfabric.utils.Position;
 import ralseiii.skyfabric.utils.RenderUtils;
+import ralseiii.skyfabric.utils.SbAreas;
 import ralseiii.skyfabric.utils.SbChecks;
 
 import java.util.Collections;
@@ -30,7 +31,7 @@ public class BlazeSolver {
     static List<BlazeInfo> blazeList = new LinkedList<>();
     public static void register() {
         WorldRenderEvents.END.register((context) -> {
-            if (SbChecks.isCatacombs && blazeList.size() != 0) {
+            if (SbChecks.currentArea == SbAreas.DUNGEON && blazeList.size() != 0) {
                 BlazeInfo blaze;
                 BlazeInfo blaze2;
                 if (isHigher) {

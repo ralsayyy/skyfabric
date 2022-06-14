@@ -7,16 +7,14 @@ import com.mojang.blaze3d.systems.RenderSystem;
 import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawableHelper;
-import net.minecraft.client.render.BufferBuilder;
 import net.minecraft.client.render.Tessellator;
 import net.minecraft.client.render.VertexFormats;
 import net.minecraft.client.render.VertexFormat;
 import net.minecraft.util.math.Vec3f;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.math.Matrix4f;
 import net.minecraft.util.math.Quaternion;
 import ralseiii.skyfabric.config.ModConfig;
-import ralseiii.skyfabric.utils.Position;
+import ralseiii.skyfabric.utils.SbAreas;
 import ralseiii.skyfabric.utils.SbChecks;
 
 public class CrystalHollowsMap {
@@ -24,7 +22,7 @@ public class CrystalHollowsMap {
     public static Identifier arrowId = new Identifier("skyfabric:textures/ui/arrow.png");
     public static void register() {
         HudRenderCallback.EVENT.register(((matrixStack, tickDelta) -> {
-            if (SbChecks.isCrystalHollows) {
+            if (SbChecks.currentArea == SbAreas.CRYSTAL_HOLLOWS) {
                 var client = MinecraftClient.getInstance();
                 if (client != null && client.player != null && client.options != null && !client.options.debugEnabled && /* AutoConfig.getConfigHolder(ModConfig.class).getConfig().dungeonConfigDropdown.dungeonMapConfigDropdown.Enabled*/ true) {
                     var tessellator = Tessellator.getInstance();

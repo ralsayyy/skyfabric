@@ -14,6 +14,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import ralseiii.skyfabric.solvers.dungeon.chat.ThreeWeirdos;
 import ralseiii.skyfabric.solvers.dungeon.chat.triviaQuiz;
 import ralseiii.skyfabric.solvers.dwarven.PuzzlerSolver;
+import ralseiii.skyfabric.utils.SbAreas;
 import ralseiii.skyfabric.utils.SbChecks;
 import ralseiii.skyfabric.solvers.dwarven.FetchurSolver;
 
@@ -52,7 +53,7 @@ public class ChatHudListenerMixin {
                     ci.cancel();
                 }
             }
-            if (SbChecks.isCatacombs) {
+            if (SbChecks.currentArea == SbAreas.DUNGEON) {
                 // three weirdos
                 if (msg.contains("[NPC]")) {
                     var hasReward = ThreeWeirdos.threeWeirdosSolver(msg);

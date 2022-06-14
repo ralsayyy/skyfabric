@@ -15,6 +15,7 @@ import ralseiii.skyfabric.hud.dungeon.DungeonMap;
 import ralseiii.skyfabric.mining.CHWaypoint;
 import ralseiii.skyfabric.solvers.dungeon.chat.ThreeWeirdos;
 import ralseiii.skyfabric.solvers.dwarven.PuzzlerSolver;
+import ralseiii.skyfabric.utils.SbAreas;
 import ralseiii.skyfabric.utils.SbChecks;
 import ralseiii.skyfabric.solvers.dungeon.entity.BlazeSolver;
 import ralseiii.skyfabric.utils.api.ApiThread;
@@ -49,7 +50,7 @@ public class Skyfabric implements ClientModInitializer {
             tickCounter = 0;
             if (!SbChecks.checkSkyblock()) return;
             MiningQuestHud.update();
-            if (SbChecks.isCatacombs) {
+            if (SbChecks.currentArea == SbAreas.DUNGEON) {
                 BlazeSolver.blazeSolver();
                 // CreeperSolver.solve();
             }

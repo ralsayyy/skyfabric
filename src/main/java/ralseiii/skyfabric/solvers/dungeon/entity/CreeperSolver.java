@@ -7,6 +7,7 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.entity.mob.CreeperEntity;
 import ralseiii.skyfabric.utils.Position;
 import ralseiii.skyfabric.utils.RenderUtils;
+import ralseiii.skyfabric.utils.SbAreas;
 import ralseiii.skyfabric.utils.SbChecks;
 
 class LineCoords {
@@ -27,7 +28,7 @@ public class CreeperSolver {
 
     public static void register() {
         WorldRenderEvents.END.register(ctx -> {
-            if (drawLines && SbChecks.isCatacombs) {
+            if (drawLines && SbChecks.currentArea == SbAreas.DUNGEON) {
                 for (var l : lineCoords) {
                     if (l.startPos.y != 0.0f)
                         RenderUtils.renderSolidLine((float) l.startPos.x, (float) l.startPos.y, (float) l.endPos.z, (float) l.endPos.x, (float) l.endPos.y, (float) l.endPos.z, ctx, 255, 0, 0, 0);

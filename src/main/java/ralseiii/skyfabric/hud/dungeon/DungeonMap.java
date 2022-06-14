@@ -11,6 +11,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.map.MapState;
 import net.minecraft.nbt.NbtCompound;
 import ralseiii.skyfabric.config.ModConfig;
+import ralseiii.skyfabric.utils.SbAreas;
 import ralseiii.skyfabric.utils.SbChecks;
 
 
@@ -18,7 +19,7 @@ import ralseiii.skyfabric.utils.SbChecks;
 public class DungeonMap {
     public static void register() {
         HudRenderCallback.EVENT.register(((matrixStack, tickDelta) -> {
-            if (SbChecks.isCatacombs && /* AutoConfig.getConfigHolder(ModConfig.class).getConfig().dungeonConfigDropdown.dungeonMapConfigDropdown.Enabled */ true) {
+            if (SbChecks.currentArea == SbAreas.DUNGEON && /* AutoConfig.getConfigHolder(ModConfig.class).getConfig().dungeonConfigDropdown.dungeonMapConfigDropdown.Enabled */ true) {
                 var client = MinecraftClient.getInstance();
                 if (client == null || client.player == null || client.world == null) return;
                 var item = client.player.getInventory().main.get(8);
