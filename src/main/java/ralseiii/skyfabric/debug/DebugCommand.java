@@ -22,6 +22,7 @@ public class DebugCommand {
     public static void run() {
         var client = MinecraftClient.getInstance();
         client.player.sendMessage(Text.of("§l§nSkyfabric debug info§r"));
-        client.player.sendMessage(Text.of("current area: " + SbChecks.currentArea));
+        client.player.sendMessage(Text.of("currentArea: " + SbChecks.currentArea));
+        client.player.sendMessage(Text.of("isSkyblock: " + SbChecks.isSkyblock));
     }
 }
