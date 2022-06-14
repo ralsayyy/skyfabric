@@ -14,18 +14,24 @@ public class MiningQuestHud {
     static String[] quests = {
             " Crystal Hunter",
             " Gemstone Collector",
-            "Titanium",
-            "Mithril",
+            "Titanium Miner",
+            " Titanium",
+            "Mithril Miner",
+            " Mithril",
             "Hard Stone Miner",
             "Ice Walker Slayer",
             "Yog Slayer",
+            "Automaton Slayer",
             "Team Treasurite Member Slayer",
             "Sludge Slayer",
             "Boss Corleone Slayer",
             "Star Sentry Puncher",
             "2x Mithril Powder Collector",
             "Chest Looter",
-            "Thyst Slayer"
+            "Thyst Slayer",
+            "Goblin Raid Slayer",
+            "Raffle:"
+
 
     };
     static String mithrilPowderString = "";
