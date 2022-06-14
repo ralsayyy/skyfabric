@@ -8,6 +8,7 @@ import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.scoreboard.ScoreboardPlayerScore;
+import ralseiii.skyfabric.mining.CHWaypoints;
 import ralseiii.skyfabric.mixin.PlayerHudAccessor;
 import ralseiii.skyfabric.solvers.dungeon.chat.ThreeWeirdos;
 
@@ -72,6 +73,7 @@ public class SbChecks {
         }
 
         if (currentArea != SbAreas.DUNGEON) ThreeWeirdos.renderOverlay = false;
+        if (currentArea != SbAreas.CRYSTAL_HOLLOWS) CHWaypoints.reset();
 
         return true;
     }

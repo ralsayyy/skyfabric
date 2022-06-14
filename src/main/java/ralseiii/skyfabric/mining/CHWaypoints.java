@@ -29,16 +29,20 @@ class CHWaypoint {
 }
 public class CHWaypoints {
     public static List<CHWaypoint> waypointList = new LinkedList<>();
-    public static ObjectSize s = new ObjectSize();
+    static ObjectSize s = new ObjectSize();
 
     static void addWaypoint(int x, int y, int z, String color) {
         waypointList.add(new CHWaypoint(color, new Position(x, y, z)));
     }
 
+    public static void reset() {
+        waypointList.clear();
+        waypointList.add(new CHWaypoint("#00ff00", new Position(513, 72, 513)));
+    }
+
     public static void register() {
         // add position of nucleus to waypoint list
-        var nucleusPos = new Position(513, 72, 513);
-        waypointList.add(new CHWaypoint("#00ff00", nucleusPos));
+        waypointList.add(new CHWaypoint("#00ff00", new Position(513, 72, 513)));
         s.set(1, 512, 1);
 
         ClientCommandRegistrationCallback.EVENT.register((dispatcher, registryAccess) -> {
