@@ -16,10 +16,10 @@ class LineCoords {
 }
 
 public class CreeperSolver {
-    public static Position entityPos;
+    static Position entityPos;
 
     public static boolean drawLines = false;
-    public static LineCoords[] lineCoords = {
+    static LineCoords[] lineCoords = {
             new LineCoords(),
             new LineCoords(),
             new LineCoords(),

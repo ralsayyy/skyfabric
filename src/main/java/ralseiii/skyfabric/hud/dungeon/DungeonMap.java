@@ -19,8 +19,8 @@ import ralseiii.skyfabric.utils.SbChecks;
 public class DungeonMap {
     public static void register() {
         HudRenderCallback.EVENT.register(((matrixStack, tickDelta) -> {
-            if (SbChecks.currentArea == SbAreas.DUNGEON && /* AutoConfig.getConfigHolder(ModConfig.class).getConfig().dungeonConfigDropdown.dungeonMapConfigDropdown.Enabled */ true) {
-                var client = MinecraftClient.getInstance();
+            var client = MinecraftClient.getInstance();
+            if (SbChecks.currentArea == SbAreas.DUNGEON && /* AutoConfig.getConfigHolder(ModConfig.class).getConfig().dungeonConfigDropdown.dungeonMapConfigDropdown.Enabled */ true && !client.options.debugEnabled) {
                 if (client == null || client.player == null || client.world == null) return;
                 var item = client.player.getInventory().main.get(8);
                 var tag = item.getNbt();

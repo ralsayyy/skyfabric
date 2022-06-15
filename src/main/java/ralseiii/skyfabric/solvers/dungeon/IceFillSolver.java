@@ -10,7 +10,7 @@ import java.util.List;
 
 public class IceFillSolver {
     // 1 = forward, 2 = left, 3 = right, 4 = backwards
-    public static int path[][] = {
+    static int path[][] = {
             {1, 1, 2, 1, 3, 3, 3, 1, 2, 1, 1}, // 1st stage
     };
     public static void solve() {

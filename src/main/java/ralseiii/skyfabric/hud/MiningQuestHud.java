@@ -1,5 +1,7 @@
 package ralseiii.skyfabric.hud;
-
+/* This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at https://mozilla.org/MPL/2.0/. */
 import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
 import net.minecraft.client.MinecraftClient;
 import ralseiii.skyfabric.mixin.PlayerHudAccessor;

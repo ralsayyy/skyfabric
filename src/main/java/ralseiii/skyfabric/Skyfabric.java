@@ -8,11 +8,10 @@ package ralseiii.skyfabric;
 import me.shedaniel.autoconfig.serializer.GsonConfigSerializer;*/
 import net.fabricmc.fabric.api.client.item.v1.ItemTooltipCallback;
 import ralseiii.skyfabric.Event.ItemTooltipEvent;
-import ralseiii.skyfabric.config.ModConfig;
 import ralseiii.skyfabric.hud.CrystalHollowsMap;
 import ralseiii.skyfabric.hud.MiningQuestHud;
 import ralseiii.skyfabric.hud.dungeon.DungeonMap;
-import ralseiii.skyfabric.mining.CHWaypoint;
+import ralseiii.skyfabric.mining.CHWaypoints;
 import ralseiii.skyfabric.solvers.dungeon.chat.ThreeWeirdos;
 import ralseiii.skyfabric.solvers.dwarven.PuzzlerSolver;
 import ralseiii.skyfabric.utils.SbAreas;
@@ -39,7 +38,7 @@ public class Skyfabric implements ClientModInitializer {
         ThreeWeirdos.register();
         PuzzlerSolver.register();
         BlazeSolver.register();
-        CHWaypoint.register();
+        CHWaypoints.register();
         MiningQuestHud.register();
         apiThread.start();
         ItemTooltipCallback.EVENT.register((itemStack, context, lines) -> ItemTooltipEvent.onItemTooltip(itemStack, lines));
