@@ -7,8 +7,11 @@ import net.fabricmc.fabric.api.client.command.v2.ClientCommandManager;
 import net.fabricmc.fabric.api.client.command.v2.ClientCommandRegistrationCallback;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.text.Text;
+import ralseiii.skyfabric.solvers.dungeon.entity.CreeperSolver;
 import ralseiii.skyfabric.utils.SbAreas;
 import ralseiii.skyfabric.utils.SbChecks;
+
+import java.util.Objects;
 
 public class DebugCommand {
     public static void register() {
@@ -31,8 +34,13 @@ public class DebugCommand {
 
     public static void run(String feature) {
         var client = MinecraftClient.getInstance();
-        client.player.sendMessage(Text.of("§l§nSkyfabric debug info§r"));
-        client.player.sendMessage(Text.of("currentArea: " + SbChecks.currentArea + " (" + SbAreas.areaToString(SbChecks.currentArea) + ")" ));
-        client.player.sendMessage(Text.of("isSkyblock: " + SbChecks.isSkyblock));
+        if (Objects.equals(feature, "reset_creeper")) {
+            CreeperSolver.reset();
+        } else {
+            client.player.sendMessage(Text.of("§l§nSkyfabric debug info§r"));
+            client.player.sendMessage(Text.of("currentArea: " + SbChecks.currentArea + " (" + SbAreas.areaToString(SbChecks.currentArea) + ")" ));
+            client.player.sendMessage(Text.of("isSkyblock: " + SbChecks.isSkyblock));
+        }
+
     }
 }

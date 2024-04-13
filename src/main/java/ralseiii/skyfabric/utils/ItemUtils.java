@@ -26,6 +26,7 @@ public class ItemUtils {
     }
     public static String getItemId(ItemStack item, Boolean skytils) {
         var tag = getExtraAttributes(item);
+        // System.out.println(tag);
         if (tag != null && tag.contains("id")) {
             var id = tag.getString("id");
             if (skytils) {
@@ -40,10 +41,26 @@ public class ItemUtils {
                         break;
                     }
                 }
+            } else {
+                if (id.equals("ENCHANTED_BOOK") && tag.contains("enchantments")) {
+                    var enchantList = tag.getCompound("enchantments").asString();
+                    var enchantments = new Gson().fromJson(enchantList, JsonObject.class).entrySet();
+                    for (var entry : enchantments) {
+                        id = "ENCHANTMENT_" + entry.getKey().toUpperCase() + "_" + entry.getValue().getAsInt();
+                        break;
+                    }
+                }
             }
             return id;
         } else {
-            return null;
+            var name = item.getName().getString();
+            if (name.contains("Wither Essence")) {
+                return "ESSENCE_WITHER";
+            } else if (name.contains("Undead Essence")) {
+                return "ESSENCE_UNDEAD";
+            } else {
+                return null;
+            }
         }
     }
 }

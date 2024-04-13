@@ -8,12 +8,14 @@ public class SbAreas {
     public static int DUNGEON = 1;
     public static int DWARVEN_MINES = 2;
     public static int OTHER = 3;
+    public static int DUNGEON_HUB = 4;
 
     static String[] areas = {
       "Crystal Hollows",
       "Dungeon",
       "Dwarven Mines",
       "Other",
+      "Dungeon Hub"
     };
 
     public static String areaToString(int area) {

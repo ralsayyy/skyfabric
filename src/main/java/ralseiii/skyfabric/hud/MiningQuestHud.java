@@ -32,8 +32,9 @@ public class MiningQuestHud {
             "2x Mithril Powder Collector",
             "Chest Looter",
             "Thyst Slayer",
-            "Goblin Raid Slayer",
+            "Goblin Raid",
             "Raffle:"
+
 
 
     };

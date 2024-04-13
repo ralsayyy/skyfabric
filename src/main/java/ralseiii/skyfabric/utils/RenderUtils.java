@@ -32,9 +32,9 @@ public class RenderUtils {
         renderer.matrixStack().translate(-camPos.x, -camPos.y, -camPos.z);
         var model = renderer.matrixStack().peek().getPositionMatrix();
 
-        var maxX = x + width;
-        var maxY = y + height;
-        var maxZ = z + depth;
+        var maxX = x + width + 0.01f;
+        var maxY = y + height + 0.01f;
+        var maxZ = z + depth + 0.01f;
 
         Tessellator tessellator = Tessellator.getInstance();
         BufferBuilder bufferBuilder = tessellator.getBuffer();
@@ -97,12 +97,10 @@ public class RenderUtils {
         var realRed = ((float) r)/ 255;
         var realBlue = ((float) b)/ 255;
 
-        bufferBuilder.begin(VertexFormat.DrawMode.QUADS, VertexFormats.POSITION_COLOR);
+        bufferBuilder.begin(VertexFormat.DrawMode.DEBUG_LINES, VertexFormats.POSITION_COLOR);
 
         bufferBuilder.vertex(model, x, y, z).color(realRed, realGreen, realBlue, alpha).next();
-        bufferBuilder.vertex(model, x, y + 0.1f, z).color(realRed, realGreen, realBlue, alpha).next();
         bufferBuilder.vertex(model, endX, endY, endZ).color(realRed, realGreen, realBlue, alpha).next();
-        bufferBuilder.vertex(model, endX, endY + 0.1f, endZ).color(realRed, realGreen, realBlue, alpha).next();
         tessellator.draw();
         RenderSystem.enableTexture();
         RenderSystem.disableBlend();

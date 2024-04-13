@@ -13,6 +13,7 @@ import ralseiii.skyfabric.hud.MiningQuestHud;
 import ralseiii.skyfabric.hud.dungeon.DungeonMap;
 import ralseiii.skyfabric.mining.CHWaypoints;
 import ralseiii.skyfabric.solvers.dungeon.chat.ThreeWeirdos;
+import ralseiii.skyfabric.solvers.dungeon.entity.CreeperSolver;
 import ralseiii.skyfabric.solvers.dwarven.PuzzlerSolver;
 import ralseiii.skyfabric.utils.SbAreas;
 import ralseiii.skyfabric.utils.SbChecks;
@@ -42,7 +43,7 @@ public class Skyfabric implements ClientModInitializer {
         MiningQuestHud.register();
         apiThread.start();
         ItemTooltipCallback.EVENT.register((itemStack, context, lines) -> ItemTooltipEvent.onItemTooltip(itemStack, lines));
-        // CreeperSolver.register();
+        CreeperSolver.register();
     }
 
     public static void onTick() {

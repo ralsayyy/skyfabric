@@ -15,17 +15,53 @@ import java.util.Locale;
 
 public class ItemTooltipEvent {
     static NumberFormat format = NumberFormat.getInstance(Locale.US);
-    public static void onItemTooltip(ItemStack item, List<Text> lines) {
-        var id = ItemUtils.getItemId(item, true);
+    /*
+     Returns the current stack size, except if it is 1.
+     If it is one, we return the maximum stack size
+     */
+    static int get_preferred_stack_size(ItemStack item) {
+        return item.getCount() == 1 ? item.getMaxCount() : item.getCount();
+    }
 
-        if (id == null || id.isEmpty()) return;
-
-        if (Bazaar.isBazaarItem(id) && true) {
-            lines.add(Text.of("§lBazaar Buy:§r " + format.format(Screen.hasShiftDown() ? Bazaar.getBuyPrice(id) * item.getCount() : Bazaar.getBuyPrice(id)) + " coins"));
-            lines.add(Text.of("§lBazaar Sell:§r " + format.format(Screen.hasShiftDown() ? Bazaar.getSellPrice(id) * item.getCount() : Bazaar.getSellPrice(id)) + " coins"));
+    static String get_bazaar_string_optional_count(boolean sell, boolean is_pressing_shift, long price, ItemStack item) {
+        StringBuilder retval = new StringBuilder("§lBazaar");
+        var count = 1;
+        if (is_pressing_shift) {
+            count = get_preferred_stack_size(item);
         }
-        if (LowestBin.isAvailable(id) && true) {
-            lines.add(Text.of("§lLowest BIN:§r " + format.format(LowestBin.get(id)) + " coins"));
+
+        if (sell) {
+            retval.append(" Sell ");
+        } else {
+            retval.append(" Buy ");
+        }
+
+        retval.append("(x").append(count).append(") :§r ");
+
+        retval.append(String.format("%,d", price * count));
+        retval.append(" coins");
+
+        return retval.toString();
+    }
+
+
+
+    public static void onItemTooltip(ItemStack item, List<Text> lines) {
+        var skytils_id = ItemUtils.getItemId(item, true);
+        var hypixel_id = ItemUtils.getItemId(item, false);
+
+        if (skytils_id == null || skytils_id.isEmpty()) return;
+        if (hypixel_id == null || hypixel_id.isEmpty()) return;
+
+
+
+        if (Bazaar.isBazaarItem(hypixel_id) && true) {
+            lines.add(Text.of(""));
+            lines.add(Text.of(get_bazaar_string_optional_count(false, Screen.hasShiftDown(), Bazaar.getBuyPrice(hypixel_id), item)));
+            lines.add(Text.of(get_bazaar_string_optional_count(true, Screen.hasShiftDown(), Bazaar.getBuyPrice(hypixel_id), item)));
+        }
+        if (LowestBin.isAvailable(skytils_id) && true) {
+            lines.add(Text.of("§lLowest BIN:§r " + format.format(LowestBin.get(skytils_id)) + " coins"));
         }
         if (/*AutoConfig.getConfigHolder(ModConfig.class).getConfig().itemInfo.sbItemId*/ true) lines.add(Text.of("§7sb:" + ItemUtils.getItemId(item, false)));
     }

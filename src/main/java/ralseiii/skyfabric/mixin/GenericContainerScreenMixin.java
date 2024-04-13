@@ -36,7 +36,7 @@ public abstract class GenericContainerScreenMixin extends HandledScreen<GenericC
     protected void drawBackground(MatrixStack matrices, float delta, int mouseX, int mouseY, CallbackInfo ci) {
         // if (!SbChecks.isSkyblock) return;
         var ts = title.getString();
-        if (SbChecks.currentArea == SbAreas.DUNGEON && (
+        if ((SbChecks.currentArea == SbAreas.DUNGEON || SbChecks.currentArea == SbAreas.DUNGEON_HUB) && (
                 ts.contains("Wood") ||
                         ts.contains("Gold") ||
                         ts.contains("Diamond") ||

@@ -46,13 +46,19 @@ public class DungeonChestProfitOverlay {
                     }
                 }
                 var priceString = sb.toString();
-                chestPrice = Integer.parseInt(priceString);
+                try {
+                    chestPrice = Integer.parseInt(priceString);
+                } catch(Exception e) {
+                    chestPrice = 0;
+                }
+
             }
 
 
         }
-        Long profit = itemPrice - chestPrice;
-        tx.draw(matrixStack, profit.toString(), 0, 0, 0xffffff);
+        long profit = itemPrice - chestPrice;
+        tx.draw(matrixStack, Long.toString(profit) + "\n\nTest", 0, 0, 0xffffff);
+        tx.draw(matrixStack, Long.toString(profit) + "\n\nTest", 0, 9, 0xffffff);
         j++;
     }
 }

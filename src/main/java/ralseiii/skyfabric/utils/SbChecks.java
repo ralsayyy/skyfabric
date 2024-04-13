@@ -11,6 +11,7 @@ import net.minecraft.scoreboard.ScoreboardPlayerScore;
 import ralseiii.skyfabric.mining.CHWaypoints;
 import ralseiii.skyfabric.mixin.PlayerHudAccessor;
 import ralseiii.skyfabric.solvers.dungeon.chat.ThreeWeirdos;
+import ralseiii.skyfabric.solvers.dungeon.entity.CreeperSolver;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -66,13 +67,19 @@ public class SbChecks {
                         if (areaString.contains("Dwarven Mines")) currentArea = SbAreas.DWARVEN_MINES;
                         else if (areaString.contains("Crystal Hollows")) currentArea = SbAreas.CRYSTAL_HOLLOWS;
                         else if (areaString.contains("Catacombs")) currentArea = SbAreas.DUNGEON;
+                        else if (areaString.contains("Dungeon Hub")) currentArea = SbAreas.DUNGEON_HUB;
                         else currentArea = SbAreas.OTHER;
                     }
                 }
             }
         }
 
-        if (currentArea != SbAreas.DUNGEON) ThreeWeirdos.renderOverlay = false;
+
+
+        if (currentArea != SbAreas.DUNGEON) {
+            ThreeWeirdos.renderOverlay = false;
+            CreeperSolver.reset();
+        }
         if (currentArea != SbAreas.CRYSTAL_HOLLOWS) CHWaypoints.reset();
 
         return true;
